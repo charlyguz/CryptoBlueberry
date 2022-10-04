@@ -1,9 +1,6 @@
 
 // Importing modules
 import React, { useState } from "react";
-import { ethers } from "ethers";
-import "./App.css";
-import Home from "./pages/home/Home";
 import {
   BrowserRouter as Router,
   Routes ,
@@ -11,6 +8,13 @@ import {
   Link,
   Navigate
 } from "react-router-dom";
+import { ethers } from "ethers";
+
+import Home from "./pages/home/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
+
+import "./App.css";
+
   
 function App() {
   
@@ -70,8 +74,8 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />}>
           </Route>
-          <Route path="/dashboard" exact>
-            
+          <Route path="/dashboard" exact element={<Dashboard />}>
+
           </Route>
           <Route path="*" element={<Navigate to ="/" />}/>
         </Routes>
