@@ -65,9 +65,7 @@ function App() {
 
           <strong>Address: </strong>
           {data.address}
-        
-            {data.Balance}
-
+          {data.Balance}
           <button onClick={btnhandler} variant="primary">
             Connect to wallet</button>
     </div>
