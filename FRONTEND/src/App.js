@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import { ethers } from "ethers";
 import "./App.css";
+import Home from "./pages/home/Home";
+
   
 function App() {
   
@@ -62,7 +64,7 @@ function App() {
       {/* Calling all values which we 
        have stored in usestate */}
   
-
+          <Home />
           <strong>Address: </strong>
           {data.address}
           {data.Balance}
