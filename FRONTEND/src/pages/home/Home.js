@@ -1,7 +1,7 @@
 import React from "react";
 
 import Hola from "./homeComponentes/Hola";
-import "./home.css"
+import "./home.css";
 
 const Home = () => {
   return (
@@ -73,27 +73,27 @@ const Home = () => {
           <div className="section__partner-container ">
             <img
               className="section__partner-img"
-              src={require('./../../assets/img/Netflix_logo.svg').default}
+              src={require("./../../assets/img/Netflix_logo.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require('./../../assets/img/Netflix_logo.svg').default}
+              src={require("./../../assets/img/Netflix_logo.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require('./../../assets/img/Netflix_logo.svg').default}
+              src={require("./../../assets/img/Netflix_logo.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require('./../../assets/img/Netflix_logo.svg').default}
+              src={require("./../../assets/img/Netflix_logo.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require('./../../assets/img/Netflix_logo.svg').default}
+              src={require("./../../assets/img/Netflix_logo.svg").default}
               alt=""
             />
           </div>
@@ -106,7 +106,10 @@ const Home = () => {
               <div className="section__services-service-image-box">
                 <img
                   className="section__services-service-image"
-                  src={require("./../../assets/img/./../../assets/img/./../../assets/img/undraw_transfer_money_re_6o1h.svg").default}
+                  src={
+                    require("./../../assets/img/./../../assets/img/./../../assets/img/undraw_transfer_money_re_6o1h.svg")
+                      .default
+                  }
                   alt=""
                 />
               </div>
@@ -125,7 +128,10 @@ const Home = () => {
               <div className="section__services-service-image-box">
                 <img
                   className="section__services-service-image"
-                  src={require("./../../assets/img/./../../assets/img/undraw_home_cinema_l7yl.svg").default}
+                  src={
+                    require("./../../assets/img/./../../assets/img/undraw_home_cinema_l7yl.svg")
+                      .default
+                  }
                   alt=""
                 />
               </div>
@@ -143,16 +149,18 @@ const Home = () => {
               <div className="section__services-service-image-box">
                 <img
                   className="section__services-service-image"
-                  src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default}
+                  src={
+                    require("./../../assets/img/undraw_secure_files_re_6vdh.svg")
+                      .default
+                  }
                   alt=""
                 />
               </div>
               <div className="section__services-service-text">
-                <h3 className="section__services-service-text--tile">
-                  Proteccion
-                </h3>
+                <h3 className="section__services-service-text--tile">Grupos</h3>
                 <p className="section__services-service-text--description">
-                  Protege, invierte y transfiere tu dinero de una manera segura{" "}
+                  Unete o crea grupos privados para utilizarlo en cosas
+                  generales
                 </p>
               </div>
             </div>
@@ -193,36 +201,63 @@ const Home = () => {
             </p>
             <div className="section__how-container--grid">
               <div className="section__how-text-box">
-                <h3 className="section__how-text--tile">Conecta tu cuenta de Metamask</h3>
-                <p className="section__how-how-text--description">
-                  Protege, invierte y transfiere tu dinero de una manera segura{" "}
-                </p>
+                <div>
+                  <h3 className="section__how-text--tile">
+                    1 - Conecte su cuenta de Metamask
+                  </h3>
+                  <p className="section__how-how-text--description">
+                    Ingresa de manera segura a Metamask para interactuar con
+                    nuestra aplicación
+                  </p>
+                </div>
               </div>
 
               <div className="section__how-image-box">
-                <img className="section__how-image" src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default} alt="" />
+                <img
+                  className="section__how-image metamask-img"
+                  src={require("./../../assets/img/MetaMask_Fox.svg").default}
+                  alt=""
+                />
               </div>
 
               <div className="section__how-image-box">
-                <img className="section__how-image" src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default} alt="" />
+                <img
+                  className="section__how-image"
+                  src={require("./../../assets/img/dashboard.svg").default}
+                  alt=""
+                />
               </div>
 
               <div className="section__how-text-box">
-                <h3 className="section__how-text--tile">Accede al dashboard</h3>
-                <p className="section__how-how-text--description">
-                  Protege, invierte y transfiere tu dinero de una manera segura{" "}
-                </p>
+                <div>
+                  <h3 className="section__how-text--tile">
+                    2 - Acceda a su dashboard
+                  </h3>
+                  <p className="section__how-how-text--description">
+                    Vea su balance en tiempo real, así como poder interactuar
+                    con su cuenta
+                  </p>
+                </div>
               </div>
 
               <div className="section__how-text-box">
-                <h3 className="section__how-text--tile">Crea o unete a suscripciones y más</h3>
-                <p className="section__how-how-text--description">
-                  Protege, invierte y transfiere tu dinero de una manera segura{" "}
-                </p>
+                <div>
+                  <h3 className="section__how-text--tile">
+                    3 - Suscripciones y grupos
+                  </h3>
+                  <p className="section__how-how-text--description">
+                    Únete a suscripciones con un menor costo. Así como crear
+                    grupos privados
+                  </p>
+                </div>
               </div>
 
               <div className="section__how-image-box">
-                <img className="section__how-image" src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default} alt="" />
+                <img
+                  className="section__how-image"
+                  src={require("./../../assets/img/connected.svg").default}
+                  alt=""
+                />
               </div>
             </div>
           </div>
@@ -250,17 +285,34 @@ const Home = () => {
             <div className="section__about-top">
               <h2 className="subtitle section__about-title">CryptoBlueberry</h2>
               <p className="section__about-description">
-                Protege, invierte y transfiere tu dinero de una manera segura
+                CryptoBlueberry es una dapp con superpoderes. En esta podras
+                tener grupos publicos para subscipciones más baratas y grupos
+                privado para cosas generales
               </p>
             </div>
             <div className="section__about-container-inner">
-              <div className="section__about-container-inner-content">
-                <p className="section__about-text--description">
-                  Protege, invierte y transfiere tu dinero de una manera segura{" "}
-                </p>
-              </div>
-              <div className="section__about-container-image">
-                <img className="section__about-image" src="" alt="" />
+              <div className="section__about-container-inner-grid">
+                <div className="section__about-container-inner-grid-item">
+                  <div className="wrap align-right">
+                    STAGE 1: Aqui se pondra stage 1
+                  </div>
+                  <div className="wrap flex-center stage">STAGE 1</div>
+                </div>
+
+                <div className="section__about-container-inner-grid-item">
+                  <div className="wrap align-right"></div>
+                  <div className="wrap flex-center stage">STAGE 2</div>
+                  <div className="wrap">
+                    STAGE 2: Aqui se pondra stage 2
+                  </div>
+                </div>
+
+                <div className="section__about-container-inner-grid-item">
+                  <div className="wrap align-right">
+                    STAGE 3: Aqui se pondra stage 3
+                  </div>
+                  <div className="wrap flex-center stage">STAGE 3</div>
+                </div>
               </div>
             </div>
           </div>

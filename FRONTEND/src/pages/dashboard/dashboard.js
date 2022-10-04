@@ -5,9 +5,12 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className="nav_dashboard_izq">
-        <h1 className="tittle_dash" id="cryptoblue">
-          CryptoBlueberry
-        </h1>
+        <div className="nav_dashboard_izq-top">
+          <h1 className="tittle_dash" id="cryptoblue">
+            CryptoBlueberry
+          </h1>
+        </div>
+
         <div className="opcions_contain">
           <div className="layers_dash">
             <h2 className="layers_dash_opcions" id="inicio_dash">
