@@ -1,9 +1,19 @@
 
 // Importing modules
 import React, { useState } from "react";
+import {
+  BrowserRouter as Router,
+  Routes ,
+  Route,
+  Link,
+  Navigate
+} from "react-router-dom";
 import { ethers } from "ethers";
-import "./App.css";
+
 import Home from "./pages/home/Home";
+import Dashboard from "./pages/dashboard/Dashboard";
+
+import "./App.css";
 
   
 function App() {
@@ -60,17 +70,16 @@ function App() {
   };
   
   return (
-    <div className="App">
-      {/* Calling all values which we 
-       have stored in usestate */}
-  
-          <Home />
-          <strong>Address: </strong>
-          {data.address}
-          {data.Balance}
-          <button onClick={btnhandler} variant="primary">
-            Connect to wallet</button>
-    </div>
+    <Router>
+        <Routes>
+          <Route path="/" exact element={<Home />}>
+          </Route>
+          <Route path="/dashboard" exact element={<Dashboard />}>
+
+          </Route>
+          <Route path="*" element={<Navigate to ="/" />}/>
+        </Routes>
+    </Router>
   );
 }
   

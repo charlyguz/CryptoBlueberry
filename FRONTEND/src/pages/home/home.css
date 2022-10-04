@@ -87,6 +87,7 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
 }
 
 .header::after {
@@ -305,8 +306,9 @@ body {
 
 .section__rewards-reward-box {
   width: 100%;
-  background-color: var(--main-general-color);
+  background-color: var(--secundary-bg-color);
   height: 300px;
+  border-radius: 16px;
 }
 
 .section__rewards-reward-box:nth-child(1) {
@@ -341,25 +343,36 @@ body {
 .section__how-container--grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  gap: 24px;
 }
 
 .section__how-text-box {
   background-color: var(--secundary-bg-color);
+  display: grid;
+  place-items: center;
+  padding: 48px;
+  border-radius: 16px;
 }
 
 .section__how-text--tile {
+  font-size: 48px;
+  color: var(--main-font-color);
 }
 
 .section__how-how-text--description {
 }
 
 .section__how-image-box {
-  background-color: var(--main-general-color);
   height: 300px;
+  display: grid;
+  place-items: center;
 }
 
 .section__how-image {
+  height: 75%;
+  width: 75%;
 }
+
 
 /* SECTION HOW IT WORKS STARTS */
 
