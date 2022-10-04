@@ -4,7 +4,13 @@ import React, { useState } from "react";
 import { ethers } from "ethers";
 import "./App.css";
 import Home from "./pages/home/Home";
-
+import {
+  BrowserRouter as Router,
+  Routes ,
+  Route,
+  Link,
+  Navigate
+} from "react-router-dom";
   
 function App() {
   
@@ -60,17 +66,16 @@ function App() {
   };
   
   return (
-    <div className="App">
-      {/* Calling all values which we 
-       have stored in usestate */}
-  
-          <Home />
-          <strong>Address: </strong>
-          {data.address}
-          {data.Balance}
-          <button onClick={btnhandler} variant="primary">
-            Connect to wallet</button>
-    </div>
+    <Router>
+        <Routes>
+          <Route path="/" exact element={<Home />}>
+          </Route>
+          <Route path="/dashboard" exact>
+            
+          </Route>
+          <Route path="*" element={<Navigate to ="/" />}/>
+        </Routes>
+    </Router>
   );
 }
   

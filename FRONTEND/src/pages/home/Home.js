@@ -193,36 +193,36 @@ const Home = () => {
             </p>
             <div className="section__how-container--grid">
               <div className="section__how-text-box">
-                <h3 className="section__how-text--tile">Transacciones</h3>
+                <h3 className="section__how-text--tile">Conecta tu cuenta de Metamask</h3>
                 <p className="section__how-how-text--description">
                   Protege, invierte y transfiere tu dinero de una manera segura{" "}
                 </p>
               </div>
 
               <div className="section__how-image-box">
-                <img className="section__how-image" src="" alt="" />
+                <img className="section__how-image" src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default} alt="" />
               </div>
 
               <div className="section__how-image-box">
-                <img className="section__how-image" src="" alt="" />
+                <img className="section__how-image" src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default} alt="" />
               </div>
 
               <div className="section__how-text-box">
-                <h3 className="section__how-text--tile">Transacciones</h3>
+                <h3 className="section__how-text--tile">Accede al dashboard</h3>
                 <p className="section__how-how-text--description">
                   Protege, invierte y transfiere tu dinero de una manera segura{" "}
                 </p>
               </div>
 
               <div className="section__how-text-box">
-                <h3 className="section__how-text--tile">Transacciones</h3>
+                <h3 className="section__how-text--tile">Crea o unete a suscripciones y más</h3>
                 <p className="section__how-how-text--description">
                   Protege, invierte y transfiere tu dinero de una manera segura{" "}
                 </p>
               </div>
 
               <div className="section__how-image-box">
-                <img className="section__how-image" src="" alt="" />
+                <img className="section__how-image" src={require("./../../assets/img/undraw_secure_files_re_6vdh.svg").default} alt="" />
               </div>
             </div>
           </div>
