@@ -1,6 +1,6 @@
 import React from "react";
 import "./dashboard.css"
-
+import Cards from "./dashboardComponets/cards";
 
 const Dashboard = () => {
     return (
@@ -24,18 +24,12 @@ const Dashboard = () => {
        
         
             <div className="dash_dere">
-                    <div className="header_dash">
-                        <input type="text" className="search_dash" placeholder="Buscar"/>
-                        <img src={require("https://img.icons8.com/small/64/000000/user.png")} className="img_perfil_dash" alt=""/>
-                        <h3 className="letter_dash_porfile">Cuenta</h3>
-                    </div>
-                <div className="cards_dash">
-                    <div className="card_dash">
-                        <h3 className="letter_dash">Tu Balance</h3>
-                        <div className="card_dash_data">
-                        </div>
-                    </div>
+                <div className="header_dash">
+                    <input type="text" className="search_dash" placeholder="Buscar"/>
+                    <img src={require("https://img.icons8.com/small/64/000000/user.png")} className="img_perfil_dash" alt=""/>
+                    <h3 className="letter_dash_porfile">Cuenta</h3>
                 </div>
+                <Cards />
                 
             </div>
 
