@@ -11,7 +11,7 @@ import {
 import { ethers } from "ethers";
 
 import Home from "./pages/home/Home";
-import Dashboard from "./pages/dashboard/Dashboard";
+import Dashboard from "./pages/dashboard/dashboard";
 
 import "./App.css";
 

@@ -138,28 +138,3 @@
   height: 100%;
   width: 100%;
 }
-.cards_dash {
-  display: flex;
-  flex-direction: row;
-  align-content: space-between;
-  justify-content: space-between;
-  width: 100%;
-  height: 85%;
-  flex-wrap: wrap;
-}
-.card_dash {
-  position: absolute;
-  left: 5%;
-  top: 20%;
-}
-.card_dash_data {
-  width: 600px;
-  height: 300px;
-
-  background: #c4c4c4;
-  border-radius: 8px;
-}
-.letter_dash {
-  font-family: "Inter", sans-serif;
-  align-self: center;
-}

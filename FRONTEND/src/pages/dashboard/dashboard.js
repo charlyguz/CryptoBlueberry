@@ -1,16 +1,14 @@
 import React from "react";
 import "./dashboard.css";
+import Cards from "./dashboardComponets/cards";
 
 const Dashboard = () => {
   return (
     <React.Fragment>
       <div className="nav_dashboard_izq">
-        <div className="nav_dashboard_izq-top">
-          <h1 className="tittle_dash" id="cryptoblue">
-            CryptoBlueberry
-          </h1>
-        </div>
-
+        <h1 className="tittle_dash" id="cryptoblue">
+          CryptoBlueberry
+        </h1>
         <div className="opcions_contain">
           <div className="layers_dash">
             <h2 className="layers_dash_opcions" id="inicio_dash">
@@ -50,12 +48,7 @@ const Dashboard = () => {
           />
           <h3 className="letter_dash_porfile">Cuenta</h3>
         </div>
-        <div className="cards_dash">
-          <div className="card_dash">
-            <h3 className="letter_dash">Tu Balance</h3>
-            <div className="card_dash_data"></div>
-          </div>
-        </div>
+        <Cards />
       </div>
     </React.Fragment>
   );
