@@ -1,6 +1,5 @@
 import React from "react";
 
-import Hola from "./homeComponentes/Hola";
 import "./home.css";
 
 const Home = () => {
@@ -275,7 +274,11 @@ const Home = () => {
               </p>
             </div>
             <div className="section__subscriptions-image-box">
-              <img className="section__subscriptions-image" src="" alt="" />
+              <img className="section__subscriptions-image" src={require("./../../assets/img/Netflix.png")} alt="" />
+              <img className="section__subscriptions-image" src={require("./../../assets/img/Disney.svg").default} alt="" />
+              <img className="section__subscriptions-image" src={require("./../../assets/img/spotify.svg").default} alt="" />
+              <img className="section__subscriptions-image" src={require("./../../assets/img/amazon.svg").default} alt="" />
+              <img className="section__subscriptions-image" src={require("./../../assets/img/hbo.svg").default} alt="" />
             </div>
           </div>
         </section>
@@ -289,29 +292,43 @@ const Home = () => {
                 tener grupos publicos para subscipciones más baratas y grupos
                 privado para cosas generales
               </p>
+              <h3 className="roadmap-title">Roadmap</h3>
             </div>
             <div className="section__about-container-inner">
+              <div className="roadmap-line"></div>
               <div className="section__about-container-inner-grid">
                 <div className="section__about-container-inner-grid-item">
-                  <div className="wrap align-right">
-                    STAGE 1: Aqui se pondra stage 1
+                  <div className="wrap align-right stage-text">
+                    STAGE 3: Aqui se pondra stage 3 <br />
+                    STAGE 3: Aqui se pondra stage 3 <br />
+                    STAGE 3: Aqui se pondra stage 3 <br />
                   </div>
-                  <div className="wrap flex-center stage">STAGE 1</div>
+                  <div className="wrap flex-center ">
+                    <div className="stage">S1</div>
+                  </div>
                 </div>
 
                 <div className="section__about-container-inner-grid-item">
                   <div className="wrap align-right"></div>
-                  <div className="wrap flex-center stage">STAGE 2</div>
-                  <div className="wrap">
-                    STAGE 2: Aqui se pondra stage 2
+                  <div className="wrap flex-center ">
+                    <div className="stage">S2</div>
+                  </div>
+                  <div className="wrap stage-text">
+                    STAGE 3: Aqui se pondra stage 3 <br />
+                    STAGE 3: Aqui se pondra stage 3 <br />
+                    STAGE 3: Aqui se pondra stage 3 <br />
                   </div>
                 </div>
 
                 <div className="section__about-container-inner-grid-item">
-                  <div className="wrap align-right">
-                    STAGE 3: Aqui se pondra stage 3
+                  <div className="wrap align-right stage-text">
+                    STAGE 3: Aqui se pondra stage 3 <br />
+                    STAGE 3: Aqui se pondra stage 3 <br />
+                    STAGE 3: Aqui se pondra stage 3 <br />
                   </div>
-                  <div className="wrap flex-center stage">STAGE 3</div>
+                  <div className="wrap flex-center ">
+                    <div className="stage">S3</div>
+                  </div>
                 </div>
               </div>
             </div>
