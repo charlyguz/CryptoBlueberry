@@ -3,23 +3,9 @@ import "./suscripciones.css";
 
 const Suscripciones = () => {
   return (
-    <section className="section__inicio-container">
-      <div className="section__inicio-item">
-        <h3 className="section__inicio-item-title">Balance</h3>
-        <div className="section__inicio-item-inner"></div>
-      </div>
-      <div className="section__inicio-item">
-        <h3 className="section__inicio-item-title">Transacciones</h3>
-        <div className="section__inicio-item-inner"></div>
-      </div>
-      <div className="section__inicio-item">
-        <h3 className="section__inicio-item-title">Grupos</h3>
-        <div className="section__inicio-item-inner"></div>
-      </div>
-      <div className="section__inicio-item">
-        <h3 className="section__inicio-item-title">Suscripciones</h3>
-        <div className="section__inicio-item-inner"></div>
-      </div>
+    <section className="section__suscripciones-container">
+        <h3 className="section__suscripciones-item-title">Suscripciones</h3>
+        <div className="section__suscripciones-item"></div>
     </section>
   );
 };
