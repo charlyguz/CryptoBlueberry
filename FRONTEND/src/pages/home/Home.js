@@ -168,10 +168,9 @@ const Home = () => {
 
         <section className="section__rewards container">
           <div className="section__rewards-container">
-            <h2 className="subtitle section__rewards-title">Recompensas</h2>
+            <h2 className="subtitle section__rewards-title">Beneficios</h2>
             <p className="section__rewards-description">
-              Obten recompensas mensuales por su lealtad. Nuestro objetivo es
-              ayudar a la sociedad
+              Los beneficios de usar la tecnología del futuro
             </p>
             <div className="section__rewards-container--grid">
               <div className="section__rewards-reward-box">

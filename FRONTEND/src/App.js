@@ -74,9 +74,14 @@ function App() {
         <Routes>
           <Route path="/" exact element={<Home />}>
           </Route>
-          <Route path="/dashboard" exact element={<Dashboard />}>
 
+          <Route path="/dashboard" exact element={<Dashboard />}>
+            
+                <Route path="balance">
+
+                </Route>
           </Route>
+
           <Route path="*" element={<Navigate to ="/" />}/>
         </Routes>
     </Router>
