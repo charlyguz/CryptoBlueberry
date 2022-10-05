@@ -1,0 +1,66 @@
+.cards_dash{
+    display: flex;
+    flex-direction: row;
+    align-content: space-between;
+    justify-content: space-between;
+    width: 100%;
+    height: 85%;
+    flex-wrap: wrap;
+}
+.card_dash{
+    position: absolute;
+    left: 5%;
+    top: 20%;
+}
+.card_dash_data{
+   
+    width: 600px;
+    height: 300px;
+
+    background: #C4C4C4;
+    border-radius: 8px;
+}
+.letter_dash{
+    font-family: 'Inter', sans-serif;
+    align-self: center;
+}
+.cards_dash_trans{
+    position: absolute;
+    left: 785px;
+    top: 20%;
+}
+.trans_tab_type{
+    display: flex;
+    position: absolute;
+    width: 33%;
+    height: 83%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+.trans_tab_amount{
+    display: flex;
+    position: absolute;
+    left: 33%;
+    width: 33%;
+    height: 83%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}
+.trans_tab_status{
+    display: flex;
+    position: absolute;
+    left: 66%;
+    width: 33%;
+    height: 83%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-start;
+    align-items: center;
+}

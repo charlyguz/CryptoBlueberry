@@ -26,7 +26,7 @@ const Dashboard = () => {
             <div className="dash_dere">
                 <div className="header_dash">
                     <input type="text" className="search_dash" placeholder="Buscar"/>
-                    <img src={require("https://img.icons8.com/small/64/000000/user.png")} className="img_perfil_dash" alt=""/>
+                    <img src={require("https://img.icons8.com/small/64/000000/user.png").default} className="img_perfil_dash" alt=""/>
                     <h3 className="letter_dash_porfile">Cuenta</h3>
                 </div>
                 <Cards />
