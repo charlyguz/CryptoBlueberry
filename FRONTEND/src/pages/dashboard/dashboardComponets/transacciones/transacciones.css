@@ -1,3 +1,6 @@
+h3{
+    font-family: 'Inter', sans-serif;
+}
 .cards_dash{
     display: flex;
     flex-direction: row;

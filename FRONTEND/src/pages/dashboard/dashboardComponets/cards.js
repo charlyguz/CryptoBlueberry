@@ -2,7 +2,7 @@ import React from "react";
 import "./cards.css"
 import Transacciones from "./transacciones/Transacciones";
 import Grupos from "./grupos/Grupos";
-import Suscripciones from "./suscripciones/suscripciones";
+import Suscripciones from "./suscripciones/Suscripciones";
 const Cards = () => {
     return (
         <React.Fragment>

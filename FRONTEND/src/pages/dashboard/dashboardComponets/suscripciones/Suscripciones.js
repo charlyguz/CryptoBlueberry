@@ -1,5 +1,5 @@
 import React from "react";
-import "./Transacciones.css"
+import "./suscripciones.css"
 
 const Suscripciones = () => {
     return (

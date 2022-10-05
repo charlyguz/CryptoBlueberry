@@ -19,68 +19,6 @@
 .nav_dashboard_izq-top {
   height: 15%;
 }
-<<<<<<< HEAD
-.layers_dash{
-    display: flex;
-    align-items: stretch;
-    margin-left: 35px;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Inter', sans-serif;
-    width: 87%;
-    height: 48%;
-    font-weight: 400;
-    margin-top: 14%;
-    
-}
-.layers_dash_opcions{
-    display: flex;
-    flex-direction: column;
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    height: 25px;
-    margin: 0px 0px 0 25px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-.layers_dash_opcions:hover{
-    background-color: #6C61DD;
-    color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
-    weight: 600px;
-    height: 50px;
-    padding-left: 50px;
-    padding-top: 30px;
-    padding-bottom: 30px;
-    transition-duration: 1s;
-}
-.config_dash{
-    display: flex;
-    align-items: stretch;
-    margin-left: 35px;
-    justify-content: center;
-    flex-direction: column;
-    font-family: 'Inter', sans-serif;
-    width: 87%;
-    margin-bottom: 6%;
-    font-weight: 400;
-}
-#opcion_config_dash:hover{
-    background-color: #6C61DD;
-    color: #fff;
-    border-radius: 10px;
-    cursor: pointer;
-    weight: 5px;
-    height: 50px;
-    padding-top: 30px;
-    padding-bottom: 10px;
-    transition-duration: 0.8s;
-}
-#cerrar_ses{
-    color:#FA9696;
-=======
->>>>>>> 3c00fc5007d719684e114010c2a42e915cf3cb85
 
 #cryptoblue {
   color: #6c61dd;
