@@ -2,17 +2,25 @@ import React from "react";
 import "./grupos.css"
 
 const Grupos = () => {
-//     <React.Fragment>
-//     <div class="cards_dash_grup">
-//         <div class="card_dash">
-//             <h3 class="letter_dash">Tus Grupos</h3>
-//             <div class="card_dash_data">
-//             </div>
-//         </div>
-//     </div>
-// </React.Fragment>
     return (
-        <h1>Este es el Grupo</h1>
+        <section className="section__inicio-container">
+        <div className="section__inicio-item">
+          <h3 className="section__inicio-item-title">Balance</h3>
+          <div className="section__inicio-item-inner"></div>
+        </div>
+        <div className="section__inicio-item">
+          <h3 className="section__inicio-item-title">Transacciones</h3>
+          <div className="section__inicio-item-inner"></div>
+        </div>
+        <div className="section__inicio-item">
+          <h3 className="section__inicio-item-title">Grupos</h3>
+          <div className="section__inicio-item-inner"></div>
+        </div>
+        <div className="section__inicio-item">
+          <h3 className="section__inicio-item-title">Suscripciones</h3>
+          <div className="section__inicio-item-inner"></div>
+        </div>
+      </section>
     )
 }
 

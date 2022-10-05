@@ -1,0 +1,23 @@
+.section__inicio-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 2.5%;
+  height: 100%;
+}
+
+.section__inicio-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.section__inicio-item-title {
+  font-size: 20px;
+}
+
+.section__inicio-item-inner {
+  background-color: #C3C3C3;
+  height: auto;
+  flex: 1;
+  border-radius: 8px;
+}

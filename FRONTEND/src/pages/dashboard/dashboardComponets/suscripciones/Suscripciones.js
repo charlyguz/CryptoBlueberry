@@ -1,20 +1,27 @@
 import React from "react";
-import "./suscripciones.css"
+import "./suscripciones.css";
 
 const Suscripciones = () => {
-     // <React.Fragment>
-        //     <div class="cards_dash_suscrip">
-        //         <div class="card_dash">
-        //             <h3 class="letter_dash">Tus Suscripciones</h3>
-        //             <div class="card_dash_data">
-        //             </div>
-        //         </div>
-        //     </div>
-        // </React.Fragment>
-    return (
-    <h1> Este es suscripciones</h1>
+  return (
+    <section className="section__inicio-container">
+      <div className="section__inicio-item">
+        <h3 className="section__inicio-item-title">Balance</h3>
+        <div className="section__inicio-item-inner"></div>
+      </div>
+      <div className="section__inicio-item">
+        <h3 className="section__inicio-item-title">Transacciones</h3>
+        <div className="section__inicio-item-inner"></div>
+      </div>
+      <div className="section__inicio-item">
+        <h3 className="section__inicio-item-title">Grupos</h3>
+        <div className="section__inicio-item-inner"></div>
+      </div>
+      <div className="section__inicio-item">
+        <h3 className="section__inicio-item-title">Suscripciones</h3>
+        <div className="section__inicio-item-inner"></div>
+      </div>
+    </section>
+  );
+};
 
-    )
-}
-
-export default Suscripciones
+export default Suscripciones;

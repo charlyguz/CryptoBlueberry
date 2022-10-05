@@ -7,7 +7,6 @@ const Dashboard = () => {
   return (
     <React.Fragment>
       <div className="nav__dasboard-container">
-
         <div className="nav_dashboard_izq">
           <div className="nav_dashboard_izq-top">
             <Link to="/" className="title-dash">
@@ -17,15 +16,17 @@ const Dashboard = () => {
           <div className="opcions_contain">
             <div className="layers_dash">
               <NavLink
+                className="dash-link"
                 to="/dashboard/inicio"
                 style={({ isActive }) => ({
                   color: isActive ? "#6c61dd" : "#fff",
                 })}
               >
-                Users
+                Inicio
               </NavLink>
 
               <NavLink
+                className="dash-link"
                 to="/dashboard/balance"
                 style={({ isActive }) => ({
                   color: isActive ? "#6c61dd" : "#fff",
@@ -35,6 +36,7 @@ const Dashboard = () => {
               </NavLink>
 
               <NavLink
+                className="dash-link"
                 to="/dashboard/transacciones"
                 style={({ isActive }) => ({
                   color: isActive ? "#6c61dd" : "#fff",
@@ -44,6 +46,7 @@ const Dashboard = () => {
               </NavLink>
 
               <NavLink
+                className="dash-link"
                 to="/dashboard/grupos"
                 style={({ isActive }) => ({
                   color: isActive ? "#6c61dd" : "#fff",
@@ -53,6 +56,7 @@ const Dashboard = () => {
               </NavLink>
 
               <NavLink
+                className="dash-link"
                 to="/dashboard/suscripciones"
                 style={({ isActive }) => ({
                   color: isActive ? "#6c61dd" : "#fff",
@@ -61,7 +65,22 @@ const Dashboard = () => {
                 Suscripciones
               </NavLink>
             </div>
-            <div className="config_dash"></div>
+
+            <div className="config_dash">
+              <a
+                className="dash-link"
+       
+              >
+                Configuración
+              </a>
+
+              <a
+                className="dash-link"
+               
+              >
+                Cerrar Sesión
+              </a>
+            </div>
           </div>
         </div>
 
@@ -78,9 +97,12 @@ const Dashboard = () => {
             />
             <h3 className="letter_dash_porfile">Cuenta</h3>
           </div>
-          <Outlet></Outlet>
+
+          <section className="section__dashboard-container">
+            <Outlet></Outlet>
+          </section>
+
         </div>
-        
       </div>
     </React.Fragment>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 
 import "./home.css";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -25,9 +26,9 @@ const Home = () => {
             <a href="#" className="header__nav-link">
               Nosotros
             </a>
-            <a href="#" className="primary-button">
-              Empieza ahora
-            </a>
+            <Link to="/dashboard/inicio" className="primary-button">
+              Conceta ahora
+            </Link>
           </div>
         </nav>
       </header>

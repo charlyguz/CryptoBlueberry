@@ -11,14 +11,17 @@
   display: flex;
   flex-direction: column;
   width: 15%;
-  height: 100%;
+
+  min-width: 300px;
+  
 }
 
 .nav_dashboard_izq-top {
   height: 150px;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: start;
   font-size: 24px;
+  padding: 0 48px;
 }
 
 .title-dash:visited,
@@ -30,50 +33,39 @@
   text-decoration: none;
 }
 .layers_dash {
-  display: flex;
-  align-items: stretch;
-  justify-content: center;
-  flex-direction: column;
   font-family: "Inter", sans-serif;
   font-weight: 400;
+  padding: 0 48px;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+
 }
+
+.dash-link {
+  font-size: 20px;
+  text-decoration: none;
+  color: #fff;
+}
+
 .layers_dash_opcions {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   font-family: "Inter", sans-serif;
   font-weight: 400;
+
 }
-.layers_dash_opcions:hover {
-  background-color: #6c61dd;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  weight: 600px;
-  height: 50px;
-  padding-left: 50px;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  transition-duration: 1s;
-}
+
 .config_dash {
   display: flex;
-  align-items: stretch;
-  justify-content: center;
+  gap: 20px;
   flex-direction: column;
   font-family: "Inter", sans-serif;
   font-weight: 400;
+  padding: 48px;
 }
-#opcion_config_dash:hover {
-  background-color: #6c61dd;
-  color: #fff;
-  border-radius: 10px;
-  cursor: pointer;
-  weight: 5px;
-  height: 50px;
-  padding-top: 30px;
-  padding-bottom: 10px;
-  transition-duration: 0.8s;
-}
+
 #cerrar_ses {
   color: #fa9696;
 }
@@ -121,4 +113,10 @@
   justify-content: space-between;
   height: 100%;
   width: 100%;
+  flex: 1 2 0;
+}
+
+.section__dashboard-container {
+  margin: 0 24px 24px 24px;
+  height: calc(100% - 174px);
 }
