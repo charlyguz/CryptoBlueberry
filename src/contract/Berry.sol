@@ -1,12 +1,11 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-import "hardhat/console.sol";
-import "@quant-finance/solidity-datetime/contracts/DateTime.sol";
-
 contract Berry {
+    uint256 constant SECONDS_PER_DAY = 24 * 60 * 60;
+    
     struct SubscriptionPlan {
-        // Provider this plan belongs to 
+        // Provider this plan belongs to
         uint providerID;
         string name;
         string description;
@@ -92,6 +91,11 @@ contract Berry {
         _;
     }
 
+    function addDays(uint256 timestamp, uint256 _days) internal pure returns (uint256 newTimestamp) {
+        newTimestamp = timestamp + _days * SECONDS_PER_DAY;
+        require(newTimestamp >= timestamp);
+    }
+
     function createProvider(
         string memory name,
         string memory imageURL,
@@ -117,11 +121,11 @@ contract Berry {
     ) external returns (uint planID) {
         // Get selected provider
         ServiceProvider storage provider = providers[providerID];
-        console.log(
-            "Plan %s has a member price of %s",
-            name,
-            price / maxMembers
-        );
+        // console.log(
+        //     "Plan %s has a member price of %s",
+        //     name,
+        //     price / maxMembers
+        // );
 
         require(
             address(msg.sender) == provider.serviceOwner,
@@ -281,7 +285,7 @@ contract Berry {
         if (group.numMembers == plan.maxMembers) {
             // Check if the subscription period has passed
             if (
-                DateTime.addDays(group.lastPaymentTimestamp, plan.recurrence) <
+                addDays(group.lastPaymentTimestamp, plan.recurrence) <
                 block.timestamp
             ) {
                 // Pay the subscription
@@ -336,7 +340,7 @@ contract Berry {
         if (group.numMembers == plan.maxMembers) {
             // Check if the subscription period has passed
             if (
-                DateTime.addDays(group.lastPaymentTimestamp, plan.recurrence) <
+                addDays(group.lastPaymentTimestamp, plan.recurrence) <
                 block.timestamp
             ) {
                 // Pay the subscription
