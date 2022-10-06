@@ -91,6 +91,7 @@ TODAS LAS FUNCIONES SON EFECTIVAS Y ESTAN EN CODIGO EN LA DAPP DE IGUAL FORMA
 # Autores
 
 - [@devleon00](https://www.github.com/devleon00) - Juan Pablo Muñiz 
+- [@charlyguz](https://github.com/charlyguz) - Carlos Guzman
 
 
 # Quick start
