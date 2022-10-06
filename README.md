@@ -45,9 +45,21 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 - El usuario podrá postear el servicio que tenga al precio que quiera
 
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/roadmap-image.png?raw=true)
+
 # Contratos
 
+- Ve nuestro contrato en RSK explorer
+
+#### [Contrato de CryptoBluberry](https://explorer.testnet.rsk.co/address/0xf25137694e130fb87735a87c49691054a34cd930?__ctab=Code)
+
+El contrato desplegada en RSK Testnet y funcional en nuestra aplicación
+
 # Tecnologías
+
+- React.js
+- 
+- 
 
 # Screenshots
 

@@ -3,25 +3,25 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import "./dashboard.css";
 import Cards from "./dashboardComponets/cards";
 // import getBerryUser from "../../utils/berry-contract";
-import {getAllProviders, createPlan, createGroup, getPlan, joinGroup, getAllGroups} from "../../utils/berry-contract";
+import {getAllProviders, createPlan, createGroup, getPlan, joinGroup, getAllGroups, getBerrys} from "../../utils/berry-contract";
 import abi from "../../contract/abi.json";
 import { ethers, BigNumber } from "ethers";
+import Balance from "./dashboardComponets/balance/Balance";
+import { useState } from "react";
 
 const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
 const Dashboard = (account, setAccount) => {
 
-  
-  // async function getBerryUser(signer) {
-  //   const numBerrys = await getBerryUser(signer);
-  //   return numBerrys;
-  // }
-
-  // async function getBalance(signer, account) {
-  //   const balance = await signer.getBalance(account);
-  //   return balance;
-  // }
-  // // const contract = new ethers.Contract(addres, abi.abi, signer);
-
+  const [balance, setBalance] = useState(0);
+  const [berry, setBerry] = useState(0);
+  async function getbalance(){
+    if(window.ethereum){
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      setBalance(await ethers.utils.formatEther((await signer.getBalance()).toString()));
+      console.log(balance);
+    }
+  }
   async function createProvider() {
     if(window.ethereum){
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -33,8 +33,11 @@ const Dashboard = (account, setAccount) => {
       );
       try {
         // await register(contract, signer, "carlos", "url", "description");
-        const login = await contract.createProvider("test", "url", "0x3981f28dC18429552D71C8Cf1f43819cbfBF3C71");
-        console.log("provider creado");
+        // contract, name, img , owner
+        // const login = await contract.createProvider("Udemy", "url", "0xBE7bAEb4Bc8500433F94A576AA737fe1a38850B6");
+        // const login = await contract.createProvider("Amazon Prime", "url", "0xBE7bAEb4Bc8500433F94A576AA737fe1a38850B6");
+        const login = await contract.createProvider("HBO Max", "url", "0xBE7bAEb4Bc8500433F94A576AA737fe1a38850B6");
+        console.log("provider creado" + login);
       }
       catch (error) {
         console.log(error);
@@ -71,9 +74,8 @@ const Dashboard = (account, setAccount) => {
         signer
       );
       try {
-        // const result = await createPlan(contract, 0, "test plan 1", "test desc", BigNumber.from(30), {value: ethers.utils.parseEther("0.03")}, BigNumber.from(3));
-        const result = await createPlan(contract, 0, "test plan 1", "test desc", 30, ethers.utils.parseEther("0.03"), 5);
-        // const result = await createPlan(contract, 0, "test plan 1", "test desc", 30,ethers.utils.parseEther("0.03"), 3);
+        //contrac, provider, name, price, description
+        const result = await createPlan(contract, 5, "Plan Mensual HBOMax", "Suscripcion mensual HBOMax", 30, ethers.utils.parseEther("0.003"), 10);
         console.log(result);
       }
       catch (error) {
@@ -137,34 +139,23 @@ const Dashboard = (account, setAccount) => {
       }
     }
   }
-
-
-
-  // }
-
-  // async function getName() {
-  //   if(window.ethereum){
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const signer = provider.getSigner();
-  //     const contract = new ethers.Contract(
-  //       addres,
-  //       abi.abi,
-  //       signer
-  //     );
-  //     try {
-  //       const name = await contract.getName();
-  //       console.log("name ", name);
-  //     }
-  //     catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-    
-  // }
-
-  
-
-
+  async function getBerrysD(){
+    if(window.ethereum){
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        addres,
+        abi.abi,
+        signer
+      );
+      try {
+        setBerry(await getAllProviders(contract));
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
+  }
 
   return (
     <React.Fragment>
@@ -238,9 +229,10 @@ const Dashboard = (account, setAccount) => {
 
         <div className="dash_dere">
           <div className="header_dash">
-            <button className="search_dash" onClick={createGroupD}> clickme register </button>  {/*aqui meten el balance de la cuenta y las berrys}*/}
-            <button className="search_dash" onClick={getAllGroupsD}> clickme plan </button>  {/*aqui meten el balance de la cuenta y las berrys}
+            <button className="search_dash" onClick={createPlanD}> crear plan </button>  
+            {/* <button className="search_dash" onClick={getAllGroupsD}> clickme plan </button>  {/*aqui meten el balance de la cuenta y las berrys} */}
             {/* <button className="search_dash"onClick={getName} > dame name</button>  aqui meten el balance de la cuenta y las berrys */}
+            {/* <button className="search_dash" onClick={getbalance}> balance :  {balance}</button>  */}
             <img
               src={
                 require("https://img.icons8.com/small/64/000000/user.png")
