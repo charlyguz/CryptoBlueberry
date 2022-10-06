@@ -59,3 +59,9 @@ export const joinGroup = async (userAccount: Signer, groupID: number) => {
 export const createPlan = async (providerAccount: Signer, ...planArgs: Parameters<Berry['addPlan']>) => {
   return berry.connect(providerAccount).addPlan(...planArgs)
 }
+
+// read function 
+
+export const getBerryUser = async (user: Signer) => {
+  // return berry.connect(user).getBerryUser();
+}
