@@ -30,7 +30,7 @@ const Inicio = () => {
         <h3 className="section__inicio-item-title">Suscripciones</h3>
         <div className="section__inicio-item-inner">
 
-          <Cards></Cards>
+        <Cards image={require("./../../../../assets/img/Coursera.svg").default} title="Coursera"/>
         </div>
       </div>
     </section>
