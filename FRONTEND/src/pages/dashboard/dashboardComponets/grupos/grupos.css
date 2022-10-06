@@ -15,7 +15,6 @@
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
 }
 
 .section__grupos-item-container {
@@ -49,11 +48,17 @@
   border-radius: 8px;
 }
 
-.section__grupos-item-container--text p:nth-child(3) {
+.section__grupos-item-container--price {
   color: #fff;
   font-size: 25px;
   font-weight: bold;
   text-align: center;
   background-color: #6c61dd;
   padding: 10px;
+}
+
+.section__grupos-item-container--img .imagen {
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
 }

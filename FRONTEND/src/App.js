@@ -23,7 +23,7 @@ import "./App.css";
 
   
 function App() {
-  const [ account , setAccount  ] = useState ( null );
+  const [ account , setAccount  ] = useState ([]);
   const [ signer , setSigner  ] = useState ( null );
   
   return (

@@ -1,24 +1,32 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import { ethers } from "ethers";
 
 import "./home.css";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 
-const Home = ({ account, setAccount}) => {
+const Home = ({ account, setAccount }) => {
+  let navigate = useNavigate();
+
+  let isConnected = Boolean(account[0]);
+
+  if (isConnected) {
+    navigate("/dashboard/incio");
+  }
+
   async function initConnection() {
     if (window.ethereum) {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",
       });
       setAccount(accounts);
+      navigate("/dashboard/inicio");
       console.log("account ", account);
     }
   }
 
-  useEffect (() => {
-  initConnection ( ) ;
-  },[]);
   // regresar a app @muñiz
   return (
     <React.Fragment>
@@ -33,19 +41,23 @@ const Home = ({ account, setAccount}) => {
             <a href="#services" className="header__nav-link">
               Servicios
             </a>
-            <a href="#" className="header__nav-link">
-              ¿Cómo funciona?
-            </a>
-            <a href="#" className="header__nav-link">
+            <a href="#suscriptions" className="header__nav-link">
               Suscripciones
             </a>
-            <a href="#" className="header__nav-link">
-              Nosotros
+            <a href="#how" className="header__nav-link">
+              ¿Cómo funciona?
             </a>
+            <a href="#roadmap" className="header__nav-link">
+              Roadmap
+            </a>
+
             {/* <Link to="/dashboard/inicio" className="primary-button">
               Conceta ahora
             </Link> */}
-            <button className="primary-button" onClick={initConnection}>Conceta ahora</button>
+
+            <Link className="primary-button" onClick={initConnection}>
+              Conceta ahora
+            </Link>
           </div>
         </nav>
       </header>
@@ -68,9 +80,9 @@ const Home = ({ account, setAccount}) => {
                 >
                   Empieza ahora
                 </a> */}
-                <Link to="/dashboard/inicio" className="primary-button section__hero--left-button">
-              Conceta ahora
-            </Link>
+                <Link className="primary-button" onClick={initConnection}>
+                  Conceta ahora
+                </Link>
                 <a href="#" className="section__hero--left-button-secundary">
                   ¿Cómo funciona?
                 </a>
@@ -224,8 +236,6 @@ const Home = ({ account, setAccount}) => {
             </div>
           </div>
         </section>
-
-        
 
         <section className="section__how container" id="how">
           <div className="section__how-container">
