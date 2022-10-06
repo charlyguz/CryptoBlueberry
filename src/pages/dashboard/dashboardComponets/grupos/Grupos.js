@@ -20,9 +20,11 @@ const addres = "0xf25137694E130Fb87735a87C49691054a34cD930";
 const Grupos = () => {
   const [displayN, setDisplay] = useState(0);
 
-  async function createGroupD() {
+  function displayOn() {
     setDisplay(!displayN);
+  }
 
+  async function createGroupD() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
@@ -63,7 +65,7 @@ const Grupos = () => {
     <section className="section__grupos-container">
       <div className="section__grupos-container-flex">
         <h3 className="section__grupos-item-title">Grupos</h3>
-        <button className="search_dash-button" onClick={createGroupD}>
+        <button className="search_dash-button" onClick={displayOn}>
           {" "}
           Crear grupo{" "}
         </button>
@@ -83,7 +85,9 @@ const Grupos = () => {
 
         <label className="container-input-title">Plan Id</label>
         <input type="number" />
-        <button className="container-input-button">Crea un grupo</button>
+        <button className="container-input-button" onClick={createGroupD}>
+          Crea un grupo
+        </button>
       </div>
     </section>
   );
