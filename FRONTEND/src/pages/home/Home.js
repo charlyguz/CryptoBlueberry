@@ -3,7 +3,24 @@ import React from "react";
 import "./home.css";
 import { Link } from "react-router-dom";
 
-const Home = () => {
+const Home = ({ account, setAccount }, {signer, setSigner}) => {
+  const initConnection = async ( ) => {
+    if(typeof window.ethereum !== "undefined") {
+      const accounts = await window.ethereum.request({
+      method : " eth_requestAccounts " ,
+    });
+    setAccount (accounts[0]);
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    setSigner(provider.getSigner());
+    }else{
+      console.log ( " Please install metamask . " ) ;
+    }
+  };
+  
+  useEffect (() => {
+  initConnection ( ) ;
+  },[]);
+  // regresar a app @muñiz
   return (
     <React.Fragment>
       <header className="header">
