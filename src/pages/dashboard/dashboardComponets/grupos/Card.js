@@ -9,7 +9,7 @@ export const Card = () => {
           <div className="section__grupos-item-container--text">
             <h4>Coursera</h4>
             <p>Membresia</p>
-            <p className="section__grupos-item-container--price">Precio: 100 <small>Berrys</small></p>
+            <p className="section__grupos-item-container--price">Precio: .03 <small>RBTC</small></p>
           </div>
         </div>
     </>

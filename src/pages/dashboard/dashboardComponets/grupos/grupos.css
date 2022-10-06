@@ -66,3 +66,41 @@
 .section__grupos-item-container--text {
   height: 100px;
 }
+
+.section__grupos-container-flex{
+  display: flex;
+  gap: 25px;
+  margin-bottom: 8px;
+}
+
+.search_dash-button {
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.container-input {
+  position: absolute;
+  width: 30%;
+  height: 30%;
+  background-color: #505050;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: grid;
+  padding: 24px;
+  border-radius: 24px;
+  flex-direction: column;
+  justify-content: space-between;
+  font-size: 24px;
+  color: white;
+}
+
+
+
+.container-input-title {
+
+}
+.container-input-button {
+  margin-top: 20px;
+  padding: 8px 16px;
+}
