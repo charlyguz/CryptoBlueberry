@@ -23,9 +23,11 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 # Servicios
 
-- Diseño intuitivo y diseños hermosos
-- Conexión con Metamask
-- 
+- Transferencia de dinero
+- Suscripciones compartidas
+- Grupos privados y público
+- Ahorro de dinero
+- Propia moneda
 
 # Roadmap
 
