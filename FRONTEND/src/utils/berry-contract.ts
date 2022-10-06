@@ -15,8 +15,8 @@ export type User = Awaited<ReturnType<Berry['users']>>
 
 // Owner actions
 // create Provider only owner
-export const createProvider = async (berry: Berry, ownerAccount: Signer, ...createProviderArgs: Parameters<Berry['createProvider']>) => {
-  return berry.connect(ownerAccount).createProvider(...createProviderArgs)
+export const createProvider = async (berry: Berry, ...createProviderArgs: Parameters<Berry['createProvider']>) => {
+  return berry.createProvider(...createProviderArgs)
 }
 
 
@@ -101,6 +101,10 @@ export const getGroupsPerPlan = (allGroups: Awaited<ReturnType<typeof getAllGrou
 // Returns an array of providers with the plan data
 export const getAllPlans =  async (berry: Berry, allProviders: Awaited<ReturnType<typeof getAllProviders>>) => {
   return (await Promise.all(allProviders.map(async (serviceProvider) => await getProviderPlans(berry, serviceProvider.providerID)))).flat()
+}
+
+export const getBerrys = async (berry: Berry) => {
+  return berry.getUserBerries();
 }
 
 
