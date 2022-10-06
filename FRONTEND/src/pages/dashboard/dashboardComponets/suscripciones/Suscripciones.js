@@ -2,7 +2,7 @@ import React from "react";
 import "./suscripciones.css";
 import { Cards } from "./Cards";
 // import {getProviderPlans,getAllGroups, createGroup, joinGroup} from "../../utils/berry-contract";
-
+import { Cards } from "./Cards";
 
 const Suscripciones = ({signer}) => {
   // const plansProvider = async function getProviderPlansD(signer, providerId) {
