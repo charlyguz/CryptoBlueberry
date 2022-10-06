@@ -58,6 +58,13 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 ![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/contrato.png?raw=true)
 
 El contrato desplegada en RSK Testnet y funcional en nuestra aplicación
+El contrato de cryptoBlueberry toma como referencia los pagos automaticos del framework RIF
+- Puede crear provedores.
+- Puede crear planes.
+- Puede crear grupos
+- Puede unirse a grupos.
+
+TODAS LAS FUNCIONES SON EFECTIVAS Y ESTAN EN CODIGO EN LA DAPP DE IGUAL FORMA 
 
 # Tecnologías
 
