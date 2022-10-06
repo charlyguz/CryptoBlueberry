@@ -14,20 +14,21 @@ const Home = () => {
             </a>
           </div>
           <div className="header__nav--right">
-            <a href="#" className="header__nav-link">
-              Recompensas
+            <a href="#services" className="header__nav-link">
+              Servicios
             </a>
-            <a href="#" className="header__nav-link">
-              ¿Cómo funciona?
-            </a>
-            <a href="#" className="header__nav-link">
+            <a href="#suscriptions" className="header__nav-link">
               Suscripciones
             </a>
-            <a href="#" className="header__nav-link">
-              Nosotros
+            <a href="#how" className="header__nav-link">
+              ¿Cómo funciona?
+            </a>
+
+            <a href="#roadmap" className="header__nav-link">
+              Roadmap
             </a>
             <Link to="/dashboard/inicio" className="primary-button">
-              Conceta ahora
+              Conecta ahora
             </Link>
           </div>
         </nav>
@@ -45,13 +46,10 @@ const Home = () => {
                 Crea grupos privados y compra suscripciones a un menor precio.{" "}
               </p>
               <div className="section__hero--left-buttons">
-                <a
-                  href="#"
-                  className="primary-button section__hero--left-button"
-                >
-                  Empieza ahora
-                </a>
-                <a href="#" className="section__hero--left-button-secundary">
+                <Link to="/dashboard/inicio" className="primary-button">
+                  Conecta ahora
+                </Link>
+                <a href="#how" className="section__hero--left-button-secundary">
                   ¿Cómo funciona?
                 </a>
               </div>
@@ -73,33 +71,33 @@ const Home = () => {
           <div className="section__partner-container ">
             <img
               className="section__partner-img"
-              src={require("./../../assets/img/Netflix_logo.svg").default}
+              src={require("./../../assets/img/Coursera.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require("./../../assets/img/Netflix_logo.svg").default}
+              src={require("./../../assets/img/Duolingo.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require("./../../assets/img/Netflix_logo.svg").default}
+              src={require("./../../assets/img/Udemy.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require("./../../assets/img/Netflix_logo.svg").default}
+              src={require("./../../assets/img/amazon.svg").default}
               alt=""
             />
             <img
               className="section__partner-img"
-              src={require("./../../assets/img/Netflix_logo.svg").default}
+              src={require("./../../assets/img/hbo.svg").default}
               alt=""
             />
           </div>
         </section>
 
-        <section className="section__services container">
+        <section className="section__services container" id="services">
           <h2 className="subtitle">Nuestros servicios</h2>
           <div className="section__services-container">
             <div className="section__services-service-box">
@@ -149,10 +147,7 @@ const Home = () => {
               <div className="section__services-service-image-box">
                 <img
                   className="section__services-service-image"
-                  src={
-                    require("./../../assets/img/undraw_secure_files_re_6vdh.svg")
-                      .default
-                  }
+                  src={require("./../../assets/img/group.svg").default}
                   alt=""
                 />
               </div>
@@ -167,29 +162,50 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="section__rewards container">
-          <div className="section__rewards-container">
-            <h2 className="subtitle section__rewards-title">Beneficios</h2>
-            <p className="section__rewards-description">
-              Los beneficios de usar la tecnología del futuro
-            </p>
-            <div className="section__rewards-container--grid">
-              <div className="section__rewards-reward-box">
-                <img className="section__rewards-reward-image" src="" alt="" />
-              </div>
-
-              <div className="section__rewards-reward-box">
-                <img className="section__rewards-reward-image" src="" alt="" />
-              </div>
-
-              <div className="section__rewards-reward-box">
-                <img className="section__rewards-reward-image" src="" alt="" />
-              </div>
+        <section className="section__subscriptions container" id="suscriptions">
+          <div className="section__subscriptions-container">
+            <div className="section__subscriptions-top">
+              <h2 className="subtitle section__subscriptions-title">
+                Subscripciones
+              </h2>
+              <p className="section__subscriptions-description">
+                Compra subscripciones de tus servicios favoritos de una manera
+                accesible, segura y fácil
+              </p>
+            </div>
+            <div className="section__subscriptions-image-box">
+              <img
+                className="section__subscriptions-image"
+                src={require("./../../assets/img/Coursera.svg").default}
+                alt=""
+              />
+              <img
+                className="section__subscriptions-image"
+                src={require("./../../assets/img/hbo.svg").default}
+                alt=""
+              />
+              <img
+                className="section__subscriptions-image"
+                src={require("./../../assets/img/Udemy.svg").default}
+                alt=""
+              />
+              <img
+                className="section__subscriptions-image"
+                src={require("./../../assets/img/amazon.svg").default}
+                alt=""
+              />
+              <img
+                className="section__subscriptions-image"
+                src={require("./../../assets/img/Duolingo.svg").default}
+                alt=""
+              />
             </div>
           </div>
         </section>
 
-        <section className="section__how container">
+        
+
+        <section className="section__how container" id="how">
           <div className="section__how-container">
             <h2 className="subtitle section__how-title">
               Empieza hoy el futuro
@@ -262,28 +278,50 @@ const Home = () => {
           </div>
         </section>
 
-        <section className="section__subscriptions container">
-          <div className="section__subscriptions-container">
-            <div className="section__subscriptions-top">
-              <h2 className="subtitle section__subscriptions-title">
-                Subscripciones
-              </h2>
-              <p className="section__subscriptions-description">
-                Compra subscripciones de tus servicios favoritos de una manera
-                accesible, segura y fácil
-              </p>
-            </div>
-            <div className="section__subscriptions-image-box">
-              <img className="section__subscriptions-image" src={require("./../../assets/img/Netflix.png")} alt="" />
-              <img className="section__subscriptions-image" src={require("./../../assets/img/Disney.svg").default} alt="" />
-              <img className="section__subscriptions-image" src={require("./../../assets/img/spotify.svg").default} alt="" />
-              <img className="section__subscriptions-image" src={require("./../../assets/img/amazon.svg").default} alt="" />
-              <img className="section__subscriptions-image" src={require("./../../assets/img/hbo.svg").default} alt="" />
+        <section className="section__rewards container">
+          <div className="section__rewards-container">
+            <h2 className="subtitle section__rewards-title">Beneficios</h2>
+            <p className="section__rewards-description">
+              Los beneficios de usar la tecnología del futuro
+            </p>
+            <div className="section__rewards-container--grid">
+              <div className="section__rewards-reward-box">
+                <p className="section__rewards-reward-box-title">
+                  Facilidad de encontrar alguien con quien compartir tu pago
+                </p>
+                <img
+                  className="section__rewards-reward-image"
+                  src={require("./../../assets/img/shared.svg").default}
+                  alt=""
+                />
+              </div>
+
+              <div className="section__rewards-reward-box">
+                <p className="section__rewards-reward-box-title">
+                  Certeza de pago del servicio
+                </p>
+                <img
+                  className="section__rewards-reward-image"
+                  src={require("./../../assets/img/safe.svg").default}
+                  alt=""
+                />
+              </div>
+
+              <div className="section__rewards-reward-box">
+                <p className="section__rewards-reward-box-title">
+                  Recompensas por ser usuario activo
+                </p>
+                <img
+                  className="section__rewards-reward-image"
+                  src={require("./../../assets/img/reward.svg").default}
+                  alt=""
+                />
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="section__about container">
+        <section className="section__about container" id="roadmap">
           <div className="section__about-container">
             <div className="section__about-top">
               <h2 className="subtitle section__about-title">CryptoBlueberry</h2>
@@ -299,9 +337,12 @@ const Home = () => {
               <div className="section__about-container-inner-grid">
                 <div className="section__about-container-inner-grid-item">
                   <div className="wrap align-right stage-text">
-                    STAGE 3: Aqui se pondra stage 3 <br />
-                    STAGE 3: Aqui se pondra stage 3 <br />
-                    STAGE 3: Aqui se pondra stage 3 <br />
+                    <p className="stage-text-title">Step 1</p>
+                    Ofrecer al usuario una dapp donde el pueda contratar
+                    suscripciones grupales de servicios de pago mensual <br />
+                    <br />
+                    Agregar a nuestra dapp la forma en que usuario podrá
+                    intercambio su fiat a RDOC <br />
                   </div>
                   <div className="wrap flex-center ">
                     <div className="stage">S1</div>
@@ -314,17 +355,22 @@ const Home = () => {
                     <div className="stage">S2</div>
                   </div>
                   <div className="wrap stage-text">
-                    STAGE 3: Aqui se pondra stage 3 <br />
-                    STAGE 3: Aqui se pondra stage 3 <br />
-                    STAGE 3: Aqui se pondra stage 3 <br />
+                    <p className="stage-text-title">Step 2</p>
+                    Sistema de ahorro, donde el usuario podrá dejar en ahorro su
+                    rdoc y tener rendimiento por ello <br /> <br />
+                    El rendimiento se vería reflejado en berrys que son puntos
+                    premia de nuestra dapp (no fungen como un token utilitario)
                   </div>
                 </div>
 
                 <div className="section__about-container-inner-grid-item">
                   <div className="wrap align-right stage-text">
-                    STAGE 3: Aqui se pondra stage 3 <br />
-                    STAGE 3: Aqui se pondra stage 3 <br />
-                    STAGE 3: Aqui se pondra stage 3 <br />
+                    <p className="stage-text-title">Step 3</p>
+                    A su vez tendrá un p2p para sacar su rdoc también un p2p
+                    <br />
+                    <br />
+                    El usuario podrá postear el servicio que tenga al precio que
+                    quiera
                   </div>
                   <div className="wrap flex-center ">
                     <div className="stage">S3</div>
@@ -335,7 +381,20 @@ const Home = () => {
           </div>
         </section>
       </main>
-      <footer className="footer"></footer>
+      <footer className="footer">
+        <div className="footer-container container">
+          <div>
+            <a href="#" className="header__nav-logo">
+              CryptoBlueberry
+            </a>
+            <p className="footer-container-text">
+              Protege, invierte y transfiere tu dinero de una manera segura.
+              Crea grupos privados y compra suscripciones a un menor precio.
+            </p>
+          </div>
+          <div className="footer-container-links"></div>
+        </div>
+      </footer>
     </React.Fragment>
   );
 };
