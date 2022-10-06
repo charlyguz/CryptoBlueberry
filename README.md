@@ -1,4 +1,4 @@
-![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/logo.png?raw=true)
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/logo.png?raw=true)
 
 # CryptoBluebetrry
 
@@ -19,7 +19,8 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 # Video
 
-[![Alt text]()]()
+[![Alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/imagen-hero.png?raw=true)](https://youtu.be/aOOGWd1mSvs)
+
 
 # Servicios
 
@@ -47,7 +48,7 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 - El usuario podrá postear el servicio que tenga al precio que quiera
 
-![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/roadmap-image.png?raw=true)
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/roadmap-image.png?raw=true)
 
 # Contratos
 
@@ -55,31 +56,42 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 #### [Contrato de CryptoBluberry](https://explorer.testnet.rsk.co/address/0xf25137694e130fb87735a87c49691054a34cd930?__ctab=Code)
 
-![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/contrato.png?raw=true)
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/contrato.png?raw=true)
 
 El contrato desplegada en RSK Testnet y funcional en nuestra aplicación
+El contrato de cryptoBlueberry toma como referencia los pagos automaticos del framework RIF
+- Puede crear provedores.
+- Puede crear planes.
+- Puede crear grupos
+- Puede unirse a grupos.
+- TODO EL CONTRATO FUE TESTEADO, EL ARCHIVO TEST SE PUDE ENCONTRAR EN LAS CARPETAS.
+
+TODAS LAS FUNCIONES SON EFECTIVAS Y ESTAN EN CODIGO EN LA DAPP DE IGUAL FORMA 
 
 # Tecnologías
 
 - React.js
-- 
-- 
+- Ethers..js
+- Hardhat
+- Ganache
+- TypeScript
 
 # Screenshots
 
 ## Landing Page
 
-![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/cryptoLanding.png?raw=true)
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/cryptoLanding.png?raw=true)
 
 
 
 ## Dashboard Page
 
-![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/dashboard-image.png?raw=true)
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/dashboard-image.png?raw=true)
 
 # Autores
 
 - [@devleon00](https://www.github.com/devleon00) - Juan Pablo Muñiz 
+- [@charlyguz](https://github.com/charlyguz) - Carlos Guzman
 
 
 # Quick start
