@@ -19,7 +19,8 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 # Video
 
-[![Alt text]()]()
+[![Alt text]()](https://youtu.be/aOOGWd1mSvs)
+
 
 # Servicios
 
@@ -63,14 +64,17 @@ El contrato de cryptoBlueberry toma como referencia los pagos automaticos del fr
 - Puede crear planes.
 - Puede crear grupos
 - Puede unirse a grupos.
+- TODO EL CONTRATO FUE TESTEADO, EL ARCHIVO TEST SE PUDE ENCONTRAR EN LAS CARPETAS.
 
 TODAS LAS FUNCIONES SON EFECTIVAS Y ESTAN EN CODIGO EN LA DAPP DE IGUAL FORMA 
 
 # Tecnologías
 
 - React.js
-- 
-- 
+- Ethers..js
+- Hardhat
+- Ganache
+- TypeScript
 
 # Screenshots
 
