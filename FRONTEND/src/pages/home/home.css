@@ -230,7 +230,9 @@ body {
 
 .section__partner-img {
   height: 40%;
-  filter: brightness(1);
+  filter: brightness(.5) grayscale(1);
+  opacity: .5;
+
 }
 
 /* SECTION PARTNER END */
@@ -312,14 +314,43 @@ body {
   background-color: var(--secundary-bg-color);
   height: 300px;
   border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+}
+
+.section__rewards-reward-box-title {
+  font-size: 24px;
+  color: var(--secundary-font-color);
+  font-weight: 600;
+  line-height: 1.8;
+  
 }
 
 .section__rewards-reward-box:nth-child(1) {
   grid-column: span 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+}
+
+.section__rewards-reward-box:nth-child(1) .section__rewards-reward-box-title{
+  font-size: 40px;
+  color: var(--secundary-font-color);
+  font-weight: 600;
+  line-height: 1.8;
+}
+
+.section__rewards-reward-box:nth-child(1) .section__rewards-reward-image{
+  width: 100%;
 }
 
 .section__rewards-reward-image {
+  width: 50%;
 }
+
 
 /* SECTION HOW IT WORKS START */
 
@@ -395,7 +426,7 @@ body {
 
 /* SECTION SUBCRIPTIONS STARTS */
 .section__subscriptions {
-  margin-bottom: 200px;
+  margin-bottom: 160px;
 }
 
 .section__subscriptions-container {
@@ -558,14 +589,34 @@ body {
   padding: 16px;
 }
 
+.stage-text-title {
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  color: var(--main-general-color);
+}
+
 /* SECTION ABOUT END */
 
 .footer {
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   background-color: var(--secundary-bg-color);
 }
 
 .align-right {
-  text-align: end;
+ 
 }
+
+.footer-container {
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+}
+
+.footer-container-text {
+  margin-top: 20px;
+  color: var(--secundary-font-color);
+}
+

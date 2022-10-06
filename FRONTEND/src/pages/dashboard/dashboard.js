@@ -3,7 +3,7 @@ import { Link, NavLink, Outlet } from "react-router-dom";
 import "./dashboard.css";
 import Cards from "./dashboardComponets/cards";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <React.Fragment>
       <div className="nav__dasboard-container">
@@ -67,41 +67,34 @@ const Dashboard = () => {
             </div>
 
             <div className="config_dash">
-              <a
-                className="dash-link"
-       
-              >
-                Configuración
-              </a>
+              <a className="dash-link">Configuración</a>
 
-              <a
-                className="dash-link"
-               
-              >
-                Cerrar Sesión
-              </a>
+              <a className="dash-link">Cerrar Sesión</a>
             </div>
           </div>
         </div>
 
         <div className="dash_dere">
           <div className="header_dash">
-            <div className="search_dash"> no se cosas de balance o asi </div>
-            <img
-              src={
-                ("https://img.icons8.com/small/64/000000/user.png")
-                  
-              }
-              className="img_perfil_dash"
-              alt=""
-            />
-            <h3 className="letter_dash_porfile">Cuenta</h3>
+            <div className="search_dash">
+              <img src={require("./../../assets/img/Blueberry.png")} className="logo-image-balance"></img>
+              {/*Falta el saldo*/}
+              <span>1105.05</span>
+           
+            </div>
+            <div className="account_dash">
+              <img
+                src={"https://img.icons8.com/small/64/000000/user.png"}
+                className="img_perfil_dash"
+                alt=""
+              />
+              <h3 className="">Cuenta</h3>
+            </div>
           </div>
 
           <section className="section__dashboard-container">
             <Outlet></Outlet>
           </section>
-
         </div>
       </div>
     </React.Fragment>
