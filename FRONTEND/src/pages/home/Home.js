@@ -1,9 +1,25 @@
 import React from "react";
+import { ethers } from "ethers";
 
 import "./home.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-const Home = () => {
+const Home = ({ account, setAccount}) => {
+  async function initConnection() {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({
+        method: "eth_requestAccounts",
+      });
+      setAccount(accounts);
+      console.log("account ", account);
+    }
+  }
+
+  useEffect (() => {
+  initConnection ( ) ;
+  },[]);
+  // regresar a app @muñiz
   return (
     <React.Fragment>
       <header className="header">
@@ -17,19 +33,19 @@ const Home = () => {
             <a href="#services" className="header__nav-link">
               Servicios
             </a>
-            <a href="#suscriptions" className="header__nav-link">
-              Suscripciones
-            </a>
-            <a href="#how" className="header__nav-link">
+            <a href="#" className="header__nav-link">
               ¿Cómo funciona?
             </a>
-
-            <a href="#roadmap" className="header__nav-link">
-              Roadmap
+            <a href="#" className="header__nav-link">
+              Suscripciones
             </a>
-            <Link to="/dashboard/inicio" className="primary-button">
-              Conecta ahora
-            </Link>
+            <a href="#" className="header__nav-link">
+              Nosotros
+            </a>
+            {/* <Link to="/dashboard/inicio" className="primary-button">
+              Conceta ahora
+            </Link> */}
+            <button className="primary-button" onClick={initConnection}>Conceta ahora</button>
           </div>
         </nav>
       </header>
@@ -46,10 +62,16 @@ const Home = () => {
                 Crea grupos privados y compra suscripciones a un menor precio.{" "}
               </p>
               <div className="section__hero--left-buttons">
-                <Link to="/dashboard/inicio" className="primary-button">
-                  Conecta ahora
-                </Link>
-                <a href="#how" className="section__hero--left-button-secundary">
+                {/* <a
+                  href="#"
+                  className="primary-button section__hero--left-button"
+                >
+                  Empieza ahora
+                </a> */}
+                <Link to="/dashboard/inicio" className="primary-button section__hero--left-button">
+              Conceta ahora
+            </Link>
+                <a href="#" className="section__hero--left-button-secundary">
                   ¿Cómo funciona?
                 </a>
               </div>
