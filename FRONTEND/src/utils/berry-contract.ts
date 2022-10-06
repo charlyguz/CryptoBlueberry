@@ -1,9 +1,9 @@
-import { BigNumberish, ethers, Signer } from 'ethers';
+import { BaseContract, BigNumberish, ethers, Signer } from 'ethers';
 import { Berry, Berry__factory } from '../contract/types';
 import type { Provider } from "@ethersproject/providers";
 
-export const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_TESTNET_URL);
-export const berry = Berry__factory.connect(process.env.REACT_APP_BERRY_CONTRACT_ADDR!, provider);
+// export const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_TESTNET_URL);
+// export const berry = Berry__factory.connect(process.env.REACT_APP_BERRY_CONTRACT_ADDR!, provider);
 
 export type SignerOrProvider = Signer | Provider;
 
@@ -15,54 +15,54 @@ export type User = Awaited<ReturnType<Berry['users']>>
 
 // Owner actions
 // create Provider only owner
-export const createProvider = async (ownerAccount: Signer, ...createProviderArgs: Parameters<Berry['createProvider']>) => {
+export const createProvider = async (berry: Berry, ownerAccount: Signer, ...createProviderArgs: Parameters<Berry['createProvider']>) => {
   return berry.connect(ownerAccount).createProvider(...createProviderArgs)
 }
 
 
 // Service Provider actions
 // create plan only service provider
-export const createPlan = async (providerAccount: Signer, ...planArgs: Parameters<Berry['addPlan']>) => {
+export const createPlan = async (berry: Berry, providerAccount: Signer, ...planArgs: Parameters<Berry['addPlan']>) => {
   return berry.connect(providerAccount).addPlan(...planArgs)
 }
 
 // User actions
 // user singup only user
-export const register = async (userAccount: Signer, ...registerArgs: Parameters<Berry['register']>) => {
+export const register = async (berry: Berry, userAccount: Signer, ...registerArgs: Parameters<Berry['register']>) => {
   return berry.connect(userAccount).register(...registerArgs)
 }
 
 // create gruop 
-export const createGroup = async (userAccount: Signer, ...createGroupArgs: Parameters<Berry['createGroup']>) => {
+export const createGroup = async (berry: Berry, userAccount: Signer, ...createGroupArgs: Parameters<Berry['createGroup']>) => {
   return berry.connect(userAccount).createGroup(...createGroupArgs)
 }
 
 // add user to group
-export const joinGroup = async (userAccount: Signer, groupID: number) => {
+export const joinGroup = async (berry: Berry, userAccount: Signer, groupID: number) => {
   return berry.connect(userAccount).joinGroup(groupID)
 }
 
 // Public actions
 // view all providers, return array of providers
-export const getAllProviders = async () => {
+export const getAllProviders = async (berry: Berry, ) => {
   const totalProviders = (await berry.numProviders()).toNumber()
   return Promise.all(Array.from({ length: totalProviders }, async (_, providerID) => await berry.providers(providerID)))
 }
 
 // view all plans, return array of plans
-export const getAllGroups = async () => {
+export const getAllGroups = async (berry: Berry, ) => {
   const totalGroups = (await berry.numGroups()).toNumber()
 
   return Promise.all(Array.from({ length: totalGroups }, async (_, groupID) => await berry.groups(groupID)))
 }
 
 // view especific plan, return plan
-export const getPlan = async (providerID: number, planID: number) => {
+export const getPlan = async (berry: Berry, providerID: number, planID: number) => {
   return berry.plansPerProvider(providerID, planID)
 }
 
 // view all plans in especific provider, return array of plans
-export const getProviderPlans = async (providerID: BigNumberish) => {
+export const getProviderPlans = async (berry: Berry, providerID: BigNumberish) => {
   const provider = await berry.providers(providerID)
   const providerNumPlans = provider.numPlans.toNumber()
 
@@ -70,7 +70,7 @@ export const getProviderPlans = async (providerID: BigNumberish) => {
 }
 
 // view all groups in especific user, return array of groups
-export const getUserGroups = async (userAccount: Signer) => {
+export const getUserGroups = async (berry: Berry, userAccount: Signer) => {
   const userAddress = await userAccount.getAddress()
   const userStruct = await berry.users(userAddress)
   const userGroupCount = userStruct.numGroups.toNumber()
@@ -99,8 +99,8 @@ export const getGroupsPerPlan = (allGroups: Awaited<ReturnType<typeof getAllGrou
 
 // Needs all providers
 // Returns an array of providers with the plan data
-export const getAllPlans =  async (allProviders: Awaited<ReturnType<typeof getAllProviders>>) => {
-  return (await Promise.all(allProviders.map(async (serviceProvider) => await getProviderPlans(serviceProvider.providerID)))).flat()
+export const getAllPlans =  async (berry: Berry, allProviders: Awaited<ReturnType<typeof getAllProviders>>) => {
+  return (await Promise.all(allProviders.map(async (serviceProvider) => await getProviderPlans(berry, serviceProvider.providerID)))).flat()
 }
 
 //por hacer **********
