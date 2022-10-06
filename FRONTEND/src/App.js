@@ -29,7 +29,7 @@ function App() {
   return (
     <Router>
         <Routes>
-          <Route path="/" exact element={<Home/>}>
+          <Route path="/" exact element={<Home signer = {signer} setSigner = {setSigner} account = {account} setAccount = {setAccount}/>}>
           </Route>
           
           <Route path="/dashboard" exact element={<Dashboard signer = {signer} setSigner = {setSigner} account = {account} setAccount = {setAccount}/>}>

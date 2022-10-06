@@ -22,8 +22,8 @@ export const createProvider = async (berry: Berry, ownerAccount: Signer, ...crea
 
 // Service Provider actions
 // create plan only service provider
-export const createPlan = async (berry: Berry, providerAccount: Signer, ...planArgs: Parameters<Berry['addPlan']>) => {
-  return berry.connect(providerAccount).addPlan(...planArgs)
+export const createPlan = async (berry: Berry, ...planArgs: Parameters<Berry['addPlan']>) => {
+  return berry.addPlan(...planArgs)
 }
 
 // User actions
@@ -33,8 +33,8 @@ export const register = async (berry: Berry, userAccount: Signer, ...registerArg
 }
 
 // create gruop 
-export const createGroup = async (berry: Berry, userAccount: Signer, ...createGroupArgs: Parameters<Berry['createGroup']>) => {
-  return berry.connect(userAccount).createGroup(...createGroupArgs)
+export const createGroup = async (berry: Berry, ...createGroupArgs: Parameters<Berry['createGroup']>) => {
+  return berry.createGroup(...createGroupArgs)
 }
 
 // add user to group
@@ -50,7 +50,7 @@ export const getAllProviders = async (berry: Berry, ) => {
 }
 
 // view all plans, return array of plans
-export const getAllGroups = async (berry: Berry, ) => {
+export const getAllGroups = async (berry: Berry ) => {
   const totalGroups = (await berry.numGroups()).toNumber()
 
   return Promise.all(Array.from({ length: totalGroups }, async (_, groupID) => await berry.groups(groupID)))
@@ -103,7 +103,12 @@ export const getAllPlans =  async (berry: Berry, allProviders: Awaited<ReturnTyp
   return (await Promise.all(allProviders.map(async (serviceProvider) => await getProviderPlans(berry, serviceProvider.providerID)))).flat()
 }
 
+
+
 //por hacer **********
 // un get que te devuelva los provedores a los que esta un usuario 
 
 //mostrar un grupo en especial
+
+
+// export const 

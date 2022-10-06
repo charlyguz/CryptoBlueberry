@@ -1,22 +1,21 @@
 import React from "react";
+import { ethers } from "ethers";
 
 import "./home.css";
 import { Link } from "react-router-dom";
+import { useEffect } from "react";
 
-const Home = ({ account, setAccount }, {signer, setSigner}) => {
-  const initConnection = async ( ) => {
-    if(typeof window.ethereum !== "undefined") {
+const Home = ({ account, setAccount}) => {
+  async function initConnection() {
+    if (window.ethereum) {
       const accounts = await window.ethereum.request({
-      method : " eth_requestAccounts " ,
-    });
-    setAccount (accounts[0]);
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    setSigner(provider.getSigner());
-    }else{
-      console.log ( " Please install metamask . " ) ;
+        method: "eth_requestAccounts",
+      });
+      setAccount(accounts);
+      console.log("account ", account);
     }
-  };
-  
+  }
+
   useEffect (() => {
   initConnection ( ) ;
   },[]);
@@ -43,9 +42,10 @@ const Home = ({ account, setAccount }, {signer, setSigner}) => {
             <a href="#" className="header__nav-link">
               Nosotros
             </a>
-            <Link to="/dashboard/inicio" className="primary-button">
+            {/* <Link to="/dashboard/inicio" className="primary-button">
               Conceta ahora
-            </Link>
+            </Link> */}
+            <button className="primary-button" onClick={initConnection}>Conceta ahora</button>
           </div>
         </nav>
       </header>
@@ -62,12 +62,15 @@ const Home = ({ account, setAccount }, {signer, setSigner}) => {
                 Crea grupos privados y compra suscripciones a un menor precio.{" "}
               </p>
               <div className="section__hero--left-buttons">
-                <a
+                {/* <a
                   href="#"
                   className="primary-button section__hero--left-button"
                 >
                   Empieza ahora
-                </a>
+                </a> */}
+                <Link to="/dashboard/inicio" className="primary-button section__hero--left-button">
+              Conceta ahora
+            </Link>
                 <a href="#" className="section__hero--left-button-secundary">
                   ¿Cómo funciona?
                 </a>
