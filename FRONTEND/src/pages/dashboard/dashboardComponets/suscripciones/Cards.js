@@ -14,7 +14,7 @@ export const Cards = () => {
               <input id="cerrar-modal" name="modal" type="radio" /> 
                 <label for="cerrar-modal"> X </label> 
                 <div id="modal">
-                    <div>
+                    <div className="modal-grupos">
                         <p> Grupo 1</p>
                         <p> Grupo 3</p>
                         <p> Grupo 2</p>
@@ -22,8 +22,6 @@ export const Cards = () => {
                 </div>
             </div>
           </div>
-
-
       </>
     )
   }

@@ -174,3 +174,16 @@
 #cerrar-modal:checked + label {
   display: none;
 }
+
+.modal-grupos p {
+  font-size: 25px;
+  font-weight: 700;
+  margin: 0;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.modal-grupos p:hover {
+  color: #fff;
+  background-color: #6c61dd;
+}

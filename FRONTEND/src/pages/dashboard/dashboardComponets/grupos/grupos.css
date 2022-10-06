@@ -49,7 +49,7 @@
   border-radius: 8px;
 }
 
-.section__grupos-item-container--text p:nth-child(3) {
+.section__grupos-item-container--price {
   color: #fff;
   font-size: 25px;
   font-weight: bold;

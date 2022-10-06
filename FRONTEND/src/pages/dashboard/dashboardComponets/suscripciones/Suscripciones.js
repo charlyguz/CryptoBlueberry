@@ -1,5 +1,6 @@
 import React from "react";
 import "./suscripciones.css";
+import { Cards } from "./Cards";
 // import {getProviderPlans,getAllGroups, createGroup, joinGroup} from "../../utils/berry-contract";
 
 

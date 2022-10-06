@@ -1,5 +1,6 @@
 import React from "react";
 import "./grupos.css";
+import { Card } from "./Card";
 // import {getUserGroups} from "../../../utils/berry-contract";
 
 const addres = ''
@@ -32,7 +33,9 @@ const Grupos = () => {
     <section className="section__grupos-container">
       <h3 className="section__grupos-item-title">Grupos</h3>
       {/* <div className="section__grupos-item">{groups(signer)}</div> */}
-      <div className="section__grupos-item"></div>
+      <div className="section__grupos-item">
+        <Card />
+      </div>
     </section>
   );
 };
