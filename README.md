@@ -63,7 +63,16 @@ El contrato desplegada en RSK Testnet y funcional en nuestra aplicación
 
 # Screenshots
 
+## Landing Page
+
+![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/FRONTEND/src/assets/img/cryptoLanding.png?raw=true)
+
+## Dashboard Page
+
 # Autores
+
+- [@devleon00](https://www.github.com/devleon00) - Juan Pablo Muñiz 
+
 
 # Quick start
 
