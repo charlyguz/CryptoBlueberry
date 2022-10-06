@@ -23,70 +23,22 @@ import "./App.css";
 
   
 function App() {
-  
-  // usetstate for storing and retrieving wallet details
-  const [data, setdata] = useState({
-    address: "",
-    Balance: null,
-  });
-  
-  // Button handler button for handling a
-  // request event for metamask
-  const btnhandler = () => {
-  
-    // Asking if metamask is already present or not
-    if (window.ethereum) {
-  
-      // res[0] for fetching a first wallet
-      window.ethereum
-        .request({ method: "eth_requestAccounts" })
-        .then((res) => accountChangeHandler(res[0]));
-    } else {
-      alert("install metamask extension!!");
-    }
-  };
-  
-  // getbalance function for getting a balance in
-  // a right format with help of ethers
-  const getbalance = (address) => {
-  
-    // Requesting balance method
-    window.ethereum
-      .request({ 
-        method: "eth_getBalance", 
-        params: [address, "latest"] 
-      })
-      .then((balance) => {
-        // Setting balance
-        setdata({
-          Balance: ethers.utils.formatEther(balance),
-        });
-      });
-  };
-  
-  // Function for getting handling all events
-  const accountChangeHandler = (account) => {
-    // Setting an address data
-    setdata({
-      address: account,
-    });
-  
-    // Setting a balance
-    getbalance(account);
-  };
+  const [ account , setAccount  ] = useState ( null );
+  const [ signer , setSigner  ] = useState ( null );
   
   return (
     <Router>
         <Routes>
-          <Route path="/" exact element={<Home />}>
+          <Route path="/" exact element={<Home/>}>
           </Route>
-
-          <Route path="/dashboard" exact element={<Dashboard />}>
+          
+          <Route path="/dashboard" exact element={<Dashboard signer = {signer} setSigner = {setSigner} account = {account} setAccount = {setAccount}/>}>
+          {/* {initConnection ? ( <Route path="/dashboard" element={<Dashboard />}> ) : ( <Navigate to="/" /> )} */}
                 <Route path="inicio" exact element={<Inicio />}></Route>
-                <Route path="suscripciones" exact element={<Suscripciones />}></Route>
+                <Route path="suscripciones" exact element={<Suscripciones signer = {signer} setSigner = {setSigner}/>}></Route>
                 <Route path="balance" exact element={<Balance />}></Route>
                 <Route path="transacciones" exact element={<Transacciones />}></Route>
-                <Route path="grupos" exact element={<Grupos />}></Route>
+                <Route path="grupos" exact element={<Grupos signer = {signer} setSigner = {setSigner}/>}></Route>
           </Route>
 
           <Route path="*" element={<Navigate to ="/" />}/>
