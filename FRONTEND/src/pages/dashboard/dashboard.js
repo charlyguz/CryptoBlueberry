@@ -32,10 +32,6 @@ const Dashboard = (account, setAccount) => {
         signer
       );
       try {
-        // await register(contract, signer, "carlos", "url", "description");
-        // contract, name, img , owner
-        // const login = await contract.createProvider("Udemy", "url", "0xBE7bAEb4Bc8500433F94A576AA737fe1a38850B6");
-        // const login = await contract.createProvider("Amazon Prime", "url", "0xBE7bAEb4Bc8500433F94A576AA737fe1a38850B6");
         const login = await contract.createProvider("HBO Max", "url", "0xBE7bAEb4Bc8500433F94A576AA737fe1a38850B6");
         console.log("provider creado" + login);
       }
@@ -113,7 +109,7 @@ const Dashboard = (account, setAccount) => {
         signer
       );
       try {
-        const result = await createGroup(contract,0,0,"test group 1", {value: ethers.utils.parseEther("0.03")});
+        const result = await createGroup(contract,1,0,"Grupo 1", {value: ethers.utils.parseEther("0.03")});
         console.log(result);
       }
       catch (error) {
@@ -229,7 +225,7 @@ const Dashboard = (account, setAccount) => {
 
         <div className="dash_dere">
           <div className="header_dash">
-            <button className="search_dash" onClick={createPlanD}> crear plan </button>  
+            <button className="search_dash" onClick={createGroupD}> crear grupo </button>  
             {/* <button className="search_dash" onClick={getAllGroupsD}> clickme plan </button>  {/*aqui meten el balance de la cuenta y las berrys} */}
             {/* <button className="search_dash"onClick={getName} > dame name</button>  aqui meten el balance de la cuenta y las berrys */}
             {/* <button className="search_dash" onClick={getbalance}> balance :  {balance}</button>  */}

@@ -1,6 +1,30 @@
 import "./suscripciones.css";
+import { useState, useEffect } from "react";
+import { ethers } from "ethers";
+import { joinGroup } from "../../../../utils/berry-contract";
+import abi from "../../../../contract/abi.json";
+const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
 
 export const Cards = (props) => {
+  async function joinGroupD(){
+    if(window.ethereum){
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        addres,
+        abi.abi,
+        signer
+      );
+      try {
+        const result = await joinGroup(contract,0,0,0);
+        console.log(result);
+      }
+      catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
     return (
       <>
           <div className="section__grupos-item-container">
@@ -15,7 +39,7 @@ export const Cards = (props) => {
                 <label for="cerrar-modal"> X </label> 
                 <div id="modal">
                     <div className="modal-grupos">
-                        <p> Grupo 1</p>
+                        <p onClick={joinGroupD}> Grupo 1</p>
                         <p> Grupo 3</p>
                         <p> Grupo 2</p>
                     </div>
