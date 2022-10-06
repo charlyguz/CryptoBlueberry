@@ -89,8 +89,8 @@ const Dashboard = () => {
             <div className="search_dash"> no se cosas de balance o asi </div>
             <img
               src={
-                require("https://img.icons8.com/small/64/000000/user.png")
-                  .default
+                ("https://img.icons8.com/small/64/000000/user.png")
+                  
               }
               className="img_perfil_dash"
               alt=""
