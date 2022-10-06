@@ -80,4 +80,20 @@ El contrato desplegada en RSK Testnet y funcional en nuestra aplicación
 
 # Quick start
 
+### 1. Clona el repositorio 
+```bash
+  git clone https://github.com/charlyguz/CryptoBlueberry/
+```
+
+### 2. Haz npm install
+```bash
+   npm install 
+```
+
+### 3. Corre el proyecto
+```bash
+   npm start 
+```
+
+
 
