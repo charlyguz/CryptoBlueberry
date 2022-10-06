@@ -4,11 +4,11 @@ export const Card = () => {
     <>
         <div className="section__grupos-item-container">
           <div className="section__grupos-item-container--img">
-            <img src="https://picsum.photos/200/300" alt="img" />
+            <img src={require("./../../../../assets/img/Coursera.svg").default} alt="img" className="imagen"/>
           </div>
           <div className="section__grupos-item-container--text">
-            <h4>Grupo 1</h4>
-            <p>Descripcion del grupo</p>
+            <h4>Coursera</h4>
+            <p>Membresia</p>
             <p className="section__grupos-item-container--price">Precio: 100 <small>Berrys</small></p>
           </div>
         </div>

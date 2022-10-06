@@ -41,15 +41,16 @@ const Home = ({ account, setAccount }) => {
             <a href="#services" className="header__nav-link">
               Servicios
             </a>
-            <a href="#" className="header__nav-link">
-              ¿Cómo funciona?
-            </a>
-            <a href="#" className="header__nav-link">
+            <a href="#suscriptions" className="header__nav-link">
               Suscripciones
             </a>
-            <a href="#" className="header__nav-link">
-              Nosotros
+            <a href="#how" className="header__nav-link">
+              ¿Cómo funciona?
             </a>
+            <a href="#roadmap" className="header__nav-link">
+              Roadmap
+            </a>
+
             {/* <Link to="/dashboard/inicio" className="primary-button">
               Conceta ahora
             </Link> */}

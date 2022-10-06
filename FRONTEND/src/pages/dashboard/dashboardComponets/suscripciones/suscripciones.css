@@ -13,6 +13,11 @@
   height: auto;
   flex: 1;
   border-radius: 8px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-row: 1fr 1fr;
+  gap: 24px;
+  overflow: hidden;
 }
 
 .section__grupos-item-container {
@@ -186,4 +191,16 @@
 .modal-grupos p:hover {
   color: #fff;
   background-color: #6c61dd;
+}
+
+.card-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.section__grupos-item-container--img .card-image {
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
 }

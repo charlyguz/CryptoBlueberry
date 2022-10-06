@@ -15,7 +15,6 @@
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
 }
 
 .section__grupos-item-container {
@@ -56,4 +55,10 @@
   text-align: center;
   background-color: #6c61dd;
   padding: 10px;
+}
+
+.section__grupos-item-container--img .imagen {
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
 }

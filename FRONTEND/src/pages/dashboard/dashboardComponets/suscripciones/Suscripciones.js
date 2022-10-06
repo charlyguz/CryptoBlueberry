@@ -2,7 +2,6 @@ import React from "react";
 import "./suscripciones.css";
 import { Cards } from "./Cards";
 // import {getProviderPlans,getAllGroups, createGroup, joinGroup} from "../../utils/berry-contract";
-import { Cards } from "./Cards";
 
 const Suscripciones = ({signer}) => {
   // const plansProvider = async function getProviderPlansD(signer, providerId) {
@@ -27,7 +26,11 @@ const Suscripciones = ({signer}) => {
     <section className="section__suscripciones-container">
         <h3 className="section__suscripciones-item-title">Suscripciones</h3>
         <div className="section__suscripciones-item">
-          <Cards />
+          <Cards image={require("./../../../../assets/img/Coursera.svg").default} title="Coursera"/>
+          <Cards image={require("./../../../../assets/img/Duolingo.svg").default} title="Duolingo"/>
+          <Cards image={require("./../../../../assets/img/Udemy.svg").default} title="Udemy"/>
+          <Cards image={require("./../../../../assets/img/amazon.svg").default} title="Amazon"/>
+          <Cards image={require("./../../../../assets/img/hbo.svg").default} title="HBO"/>
         </div>
     </section>
     </>
