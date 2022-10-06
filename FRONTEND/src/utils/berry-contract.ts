@@ -38,8 +38,8 @@ export const createGroup = async (berry: Berry, ...createGroupArgs: Parameters<B
 }
 
 // add user to group
-export const joinGroup = async (berry: Berry, userAccount: Signer, groupID: number) => {
-  return berry.connect(userAccount).joinGroup(groupID)
+export const joinGroup = async (berry: Berry, groupID: number) => {
+  return berry.joinGroup(groupID)
 }
 
 // Public actions

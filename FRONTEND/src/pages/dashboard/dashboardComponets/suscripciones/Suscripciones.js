@@ -3,6 +3,7 @@ import "./suscripciones.css";
 import { Cards } from './Cards'
 import { ethers } from "ethers";
 // import {getProviderPlans,getAllGroups, createGroup, joinGroup} from "../../utils/berry-contract";
+// import { joinGroup } from "../../../../utils/berry-contract";
 import abi from "../../../../contract/abi.json";
 
 const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
@@ -28,22 +29,24 @@ const Suscripciones = ({ signer }) => {
       }
     }
   }
-  
-  // const plansProvider = async function getProviderPlansD(signer, providerId) {
-  //   const plans = await getProviderPlans(signer, providerId);
-  //   return plans;
-  // }
 
-  // const allGroups = async function getAllGroupsD(signer) {
-  //   const groups = await getAllGroups(signer);
-  //   return groups;
-  // }
-
-  // async function createGroupD(signer, providerId, planId, name) {
-  //   await createGroup(signer, providerId, planId, name);
-  // }
-  // async function joinGroupD(signer, groupId) {
-  //   await joinGroup(signer, groupId);
+  // async function joinGroupD(){
+  //   if(window.ethereum){
+  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //     const signer = provider.getSigner();
+  //     const contract = new ethers.Contract(
+  //       addres,
+  //       abi.abi,
+  //       signer
+  //     );
+  //     try {
+  //       const result = await joinGroup(contract,0,0,0);
+  //       console.log(result);
+  //     }
+  //     catch (error) {
+  //       console.log(error);
+  //     }
+  //   }
   // }
 
   return (
