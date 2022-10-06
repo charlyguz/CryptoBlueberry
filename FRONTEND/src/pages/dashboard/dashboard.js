@@ -2,8 +2,20 @@ import React from "react";
 import { Link, NavLink, Outlet } from "react-router-dom";
 import "./dashboard.css";
 import Cards from "./dashboardComponets/cards";
+// import getBerryUser from "../../utils/berry-contract";
 
-const Dashboard = () => {
+
+const Dashboard = ({signer, account}) => {
+  async function getBerryUser(signer) {
+    const numBerrys = await getBerryUser(signer);
+    return numBerrys;
+  }
+
+  async function getBalance(signer, account) {
+    const balance = await signer.getBalance(account);
+    return balance;
+  }
+
   return (
     <React.Fragment>
       <div className="nav__dasboard-container">
@@ -86,7 +98,7 @@ const Dashboard = () => {
 
         <div className="dash_dere">
           <div className="header_dash">
-            <div className="search_dash"> no se cosas de balance o asi </div>
+            <div className="search_dash"> no se cosas de balance o asi </div>  {/* aqui meten el balance de la cuenta y las berrys */}
             <img
               src={
                 require("https://img.icons8.com/small/64/000000/user.png")
