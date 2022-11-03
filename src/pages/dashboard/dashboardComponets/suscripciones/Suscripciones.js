@@ -4,7 +4,7 @@ import { Cards } from './Cards'
 import { ethers } from "ethers";
 // import {getProviderPlans,getAllGroups, createGroup, joinGroup} from "../../utils/berry-contract";
 // import { joinGroup } from "../../../../utils/berry-contract";
-import abi from "../../../../contract/abi.json";
+import abi from "../../../../contract/Berry.json";
 
 const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
 

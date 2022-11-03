@@ -5,7 +5,7 @@ import { getAllGroups } from '../../../../../utils/berry-contract'
 import { ethers } from 'ethers'
 import { Berry__factory } from '../../../../../contract/types'
 import BerryJSON from '../../../../../contract/Berry.json'
-import abi from '../../../../../contract/abi.json'
+import abi from '../../../../../contract/Berry.json'
 
 import GrupoListaItem from './grupo-lista/GrupoListaItem'
 import { UsersIcon } from '@heroicons/react/solid'

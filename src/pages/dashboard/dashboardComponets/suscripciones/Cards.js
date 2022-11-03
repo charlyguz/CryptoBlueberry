@@ -2,7 +2,7 @@ import "./suscripciones.css";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { joinGroup } from "../../../../utils/berry-contract";
-import abi from "../../../../contract/abi.json";
+import abi from "../../../../contract/Berry.json";
 const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
 
 export const Cards = (props) => {

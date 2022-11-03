@@ -12,7 +12,7 @@ import {
   getAllGroups,
   getBerrys,
 } from "../../utils/berry-contract";
-import abi from "../../contract/abi.json";
+import abi from "../../contract/Berry.json";
 import { ethers, BigNumber } from "ethers";
 import Balance from "./dashboardComponets/balance/Balance";
 import { useState } from "react";
