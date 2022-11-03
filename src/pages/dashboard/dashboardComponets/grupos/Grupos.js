@@ -30,9 +30,56 @@ const Grupos = () => {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(addres, abi.abi, signer);
       try {
-        const result = await createGroup(contract, 1, 0, "Grupo 1", {
-          value: ethers.utils.parseEther("0.03"),
+        const result = await createGroup(contract, 1, 1, "Grupo 2 corusera", {
+          value: ethers.utils.parseEther("0.0003"),
         });
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  
+  async function getPlans(){
+    if(window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(addres, abi.abi, signer);
+      try {
+        const result = await getPlan(contract, 2,0);
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  async function createPland(){
+    if(window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(addres, abi.abi, signer);
+      try {
+        const result = await createPlan(contract, 2, "segundo plan mensual", "plan mensual :)",30, 3000000000, 100);
+        console.log(result);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+
+  async function joinGroupD(){
+    if(window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(addres, abi.abi, signer);
+      try {
+        // const result = await joinGroup(contract, 8, {
+        //   value: ethers.utils.parseEther("0.0003"),
+        // });
+        const result = await joinGroup(contract, 8, {
+          value: ethers.utils.parseEther("0.0003"),
+        }); 
         console.log(result);
       } catch (error) {
         console.log(error);
@@ -65,9 +112,12 @@ const Grupos = () => {
     <section className="section__grupos-container">
       <div className="section__grupos-container-flex">
         <h3 className="section__grupos-item-title">Grupos</h3>
-        <button className="search_dash-button" onClick={displayOn}>
+        {/* <button className="search_dash-button" onClick={displayOn}>
           {" "}
           Crear grupo{" "}
+        </button> */}
+        <button className="container-input-button" onClick={joinGroupD}>
+          creame aqui si 
         </button>
       </div>
 
@@ -88,6 +138,7 @@ const Grupos = () => {
         <button className="container-input-button" onClick={createGroupD}>
           Crea un grupo
         </button>
+        
       </div>
     </section>
   );

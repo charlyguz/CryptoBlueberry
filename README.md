@@ -19,7 +19,7 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 # Video
 
-[![Alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/imagen-hero.png?raw=true)](https://youtu.be/aOOGWd1mSvs)
+[![Alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/imagen-hero.png?raw=true)](https://youtu.be/nBUdj1dnGYQ)
 
 
 # Servicios
@@ -92,6 +92,9 @@ TODAS LAS FUNCIONES SON EFECTIVAS Y ESTAN EN CODIGO EN LA DAPP DE IGUAL FORMA
 
 - [@devleon00](https://www.github.com/devleon00) - Juan Pablo Muñiz 
 - [@charlyguz](https://github.com/charlyguz) - Carlos Guzman
+- [@rlaaron](https://github.com/rlaaron) - Aaron Rincon Lopez
+- [@rlaaron](https://github.com/unscatty) - Carlos Aguilera
+- [@rlaaron](https://github.com/slizer98) - Erick VIllafuerte
 
 
 # Quick start

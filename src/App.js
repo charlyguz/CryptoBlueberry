@@ -18,6 +18,7 @@ import Suscripciones from "./pages/dashboard/dashboardComponets/suscripciones/Su
 import Balance from "./pages/dashboard/dashboardComponets/balance/Balance"
 import Transacciones from "./pages/dashboard/dashboardComponets/transacciones/Transacciones";
 import Grupos from "./pages/dashboard/dashboardComponets/grupos/Grupos";
+import GruposModal from './pages/dashboard/dashboardComponets/grupos/grupos-por-plan/GruposModal'
 
 import "./App.css";
 
@@ -39,6 +40,8 @@ function App() {
                 <Route path="balance" exact element={<Balance />}></Route>
                 <Route path="transacciones" exact element={<Transacciones />}></Route>
                 <Route path="grupos" exact element={<Grupos signer = {signer} setSigner = {setSigner}/>}></Route>
+                {/* <Route path="grupos" exact element={<Grupos />}></Route> */}
+                <Route path="modal" exact element={<GruposModal />}></Route>
           </Route>
           
           <Route path="*" element={<Navigate to ="/" />}/>
