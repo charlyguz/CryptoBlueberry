@@ -71,11 +71,7 @@ export const getProviderPlans = async (berry: Berry, providerID: BigNumberish) =
 
 // view all groups in especific user, return array of groups
 export const getUserGroups = async (berry: Berry, userAccount: Signer) => {
-  const userAddress = await userAccount.getAddress()
-  const userStruct = await berry.users(userAddress)
-  const userGroupCount = userStruct.numGroups.toNumber()
-
-  return Promise.all(Array.from({ length: userGroupCount }, async (_, groupID) => await berry.groupsPerUser(userAddress, groupID)))
+  return berry.connect(userAccount).getAllUserGroups(userAccount.getAddress())
 }
 
 // Post-processing methods
