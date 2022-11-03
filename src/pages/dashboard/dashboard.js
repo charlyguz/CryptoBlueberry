@@ -48,7 +48,7 @@ const Dashboard = (account, setAccount) => {
       }
     }
   }
-
+  /*este es un comentario*/
   async function gatAllProvider() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -134,7 +134,8 @@ const Dashboard = (account, setAccount) => {
       const signer = provider.getSigner();
       const contract = new ethers.Contract(addres, abi.abi, signer);
       try {
-        setBerry(await getAllProviders(contract));
+        setBerry((await getBerrys(contract)).toString());
+        console.log(berry)
       } catch (error) {
         console.log(error);
       }
@@ -143,6 +144,7 @@ const Dashboard = (account, setAccount) => {
 
   useEffect(() => {
     getbalance()
+    getBerrysD()
   }, []);
 
 
@@ -206,6 +208,16 @@ const Dashboard = (account, setAccount) => {
               >
                 Suscripciones
               </NavLink>
+
+              <NavLink
+                className="dash-link"
+                to="/dashboard/modal"
+                style={({ isActive }) => ({
+                  color: isActive ? "#6c61dd" : "#fff",
+                })}
+              >
+                Modal
+              </NavLink>
             </div>
 
             <div className="config_dash">
@@ -224,7 +236,17 @@ const Dashboard = (account, setAccount) => {
                 className="logo-image-balance"
               ></img>
               {/*Falta el saldo*/}
-              <span>{balance}</span>
+              <span>balance {balance}</span>
+              
+            </div>
+            <div className="search_dash">
+              <img
+                src={require("./../../assets/img/Blueberry.png")}
+                className="logo-image-balance"
+              ></img>
+              {/*Falta el saldo*/}
+              {/* <span>berrys: {berry.toString()}</span> */}
+              <span>berrys: {berry}</span>
               
             </div>
             <div className="account_dash">
