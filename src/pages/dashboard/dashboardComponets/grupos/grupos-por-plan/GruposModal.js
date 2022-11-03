@@ -1,92 +1,102 @@
-import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState } from 'react'
-import { useEffect } from 'react'
-import { getAllGroups } from '../../../../../utils/berry-contract'
-import { ethers } from 'ethers'
-import { Berry__factory } from '../../../../../contract/types'
-import BerryJSON from '../../../../../contract/Berry.json'
-import abi from '../../../../../contract/abi.json'
+import { Dialog, Transition } from "@headlessui/react";
+import React, { Fragment, useState } from "react";
+import { useEffect } from "react";
+import {
+  getAllGroups,
+  getUserGroups,
+} from "../../../../../utils/berry-contract";
+import { ethers } from "ethers";
+import abi from "contract/Berry.json";
 
-import GrupoListaItem from './grupo-lista/GrupoListaItem'
-import { UsersIcon } from '@heroicons/react/solid'
+import GrupoListaItem from "./grupo-lista/GrupoListaItem";
+import { UsersIcon } from "@heroicons/react/solid";
+import { BigNumber } from "ethers";
 
-const positions = [
+const groups = [
   {
-    id: 1,
-    title: 'Back End Developer',
-    type: 'Full-time',
-    location: 'Remote',
-    department: 'Engineering',
-    closeDate: '2020-01-07',
-    closeDateFull: 'January 7, 2020',
+    groupID: BigNumber.from(1),
+    name: "grupo 1",
+    totalBalance: ethers.utils.parseEther("0.002"),
+    planID: BigNumber.from(1),
+    planProviderID: BigNumber.from(0),
+    numMembers: BigNumber.from(3),
+    initialized: true,
+    creationTimestamp: BigNumber.from(new Date().getTime()),
+    lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
+
+    plan: {
+      providerID: BigNumber.from(0),
+      name: "Duolingo+ 3 personas",
+      description: "Dulingo familar",
+      recurrence: BigNumber.from(30),
+      price: ethers.utils.parseEther("0.003"),
+      active: true,
+      maxMembers: BigNumber.from(3),
+      pricePerMember: ethers.utils.parseEther("0.001"),
+    },
   },
   {
-    id: 2,
-    title: 'Front End Developer',
-    type: 'Full-time',
-    location: 'Remote',
-    department: 'Engineering',
-    closeDate: '2020-01-07',
-    closeDateFull: 'January 7, 2020',
+    groupID: BigNumber.from(2),
+    name: "grupo 2",
+    totalBalance: ethers.utils.parseEther("0.0002"),
+    planID: BigNumber.from(2),
+    planProviderID: BigNumber.from(1),
+    numMembers: BigNumber.from(6),
+    initialized: true,
+    creationTimestamp: BigNumber.from(new Date().getTime()),
+    lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
+
+    plan: {
+      providerID: BigNumber.from(1),
+      name: "Duolingo+ 6 personas",
+      description: "Dulingo familar",
+      recurrence: BigNumber.from(30),
+      price: ethers.utils.parseEther("0.005"),
+      active: true,
+      maxMembers: BigNumber.from(6),
+      pricePerMember: ethers.utils.parseEther("0.001"),
+    },
   },
-  {
-    id: 3,
-    title: 'User Interface Designer',
-    type: 'Full-time',
-    location: 'Remote',
-    department: 'Design',
-    closeDate: '2020-01-14',
-    closeDateFull: 'January 14, 2020',
-  },
-]
+];
 
-export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(false)
+export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
 
-  let [allGroups, setAllGroups] = useState([])
-  let [allProviders, setAllProviders] = useState([])
+  let [allGroups, setAllGroups] = useState(groups);
+  let [allProviders, setAllProviders] = useState([]);
 
-  useEffect(() => {
-    (async function () {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(
-          process.env.REACT_APP_BERRY_CONTRACT_ADDR,
-          abi.abi,
-          signer
-        );
-        try {
-          const result = await getAllGroups(contract);
-          console.log(result);
-          setAllGroups(result)
-        }
-        catch (error) {
-          console.log(error);
-        }
-      }
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async function () {
+  //     if (window.ethereum) {
+  //       const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //       const signer = provider.getSigner();
+  //       const contract = new ethers.Contract(
+  //         process.env.REACT_APP_BERRY_CONTRACT_ADDR,
+  //         abi.abi,
+  //         signer
+  //       );
+  //       try {
+  //         const result = await getUserGroups(contract, signer);
+  //         console.log(result);
+  //         setAllGroups(result)
+  //       }
+  //       catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
+  //   })()
+  // }, [])
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   return (
     <React.Fragment>
-      <div className="fixed flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
-      </div>
+      
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -130,13 +140,21 @@ export default function MyModal() {
                     </ul>
                   </div>
 
-                  <div className="mt-4">
+                  <div className="flex justify-end mt-4 ">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex mr-4 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Ok
+                    </button>
+
+                    <button
+                      type="button"
+                      className="text-white inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium  hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={() => setOpenSub(true)}
+                    >
+                      Crear Grupo
                     </button>
                   </div>
                 </Dialog.Panel>
@@ -146,5 +164,5 @@ export default function MyModal() {
         </Dialog>
       </Transition>
     </React.Fragment>
-  )
+  );
 }

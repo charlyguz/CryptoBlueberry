@@ -1,68 +1,67 @@
-import React, { useState } from "react";
-import "./suscripciones.css";
-import { Cards } from './Cards'
-import { ethers } from "ethers";
-// import {getProviderPlans,getAllGroups, createGroup, joinGroup} from "../../utils/berry-contract";
-// import { joinGroup } from "../../../../utils/berry-contract";
-import abi from "../../../../contract/abi.json";
+import React, { useState, useEffect } from 'react'
+import { ethers } from 'ethers'
+import abi from 'contract/Berry.json'
+import { getAllProviders, getAllPlans } from '../../../../utils/berry-contract'
+import SubscripcionCard from './SubscripcionCard'
+import { useCallback } from 'react'
 
-const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
+export default function Subscripciones() {
+  const [plansWithProvider, setPlansWithProvider] = useState([])
 
-const Suscripciones = ({ signer }) => {
-  const [misGrupos, setMisGrupos] = useState([])
-  
-  async function getMyGroups() {
-    if (window.ethereum) {
-      const provider = new ethers.providers.Web3Provider(window.ethereum);
-      const signer = provider.getSigner();
-      const contract = new ethers.Contract(
-        addres,
-        abi.abi,
-        signer
-      );
-      try {
-         setMisGrupos(await contract.getUserGroups(contract, contract.signer))
-        console.log("provider creado");
+  useEffect(() => {
+    (async function () {
+      if (window.ethereum) {
+        try {
+          const provider = new ethers.providers.Web3Provider(window.ethereum);
+          const signer = provider.getSigner();
+          const contract = new ethers.Contract(
+            process.env.REACT_APP_BERRY_CONTRACT_ADDR,
+            abi.abi,
+            signer
+          );
+
+          const allProviders = await getAllProviders(contract)
+          const result = await getAllPlans(contract, allProviders)
+
+          const _plansWithProvider = await Promise.all(result.map(async (plan) => {
+            return {
+              ...plan,
+              provider: await contract.providers(plan.providerID)
+            }
+          }))
+
+          console.debug(_plansWithProvider)
+
+          setPlansWithProvider(_plansWithProvider)
+        } catch (err) {
+          console.error(err)
+        }
       }
-      catch (error) {
-        console.log(error);
-      }
-    }
-  }
+    })()
+  }, [])
 
-  // async function joinGroupD(){
-  //   if(window.ethereum){
-  //     const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //     const signer = provider.getSigner();
-  //     const contract = new ethers.Contract(
-  //       addres,
-  //       abi.abi,
-  //       signer
-  //     );
-  //     try {
-  //       const result = await joinGroup(contract,0,0,0);
-  //       console.log(result);
-  //     }
-  //     catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-  // }
+
 
   return (
-    <>
+    <React.Fragment>
       <section className="section__suscripciones-container">
         <h3 className="section__suscripciones-item-title">Suscripciones</h3>
-        <div className="section__suscripciones-item">
-          <Cards image={require("./../../../../assets/img/Coursera.svg").default} title="Coursera"/>
-          <Cards image={require("./../../../../assets/img/Duolingo.svg").default} title="Duolingo"/>
-          <Cards image={require("./../../../../assets/img/Udemy.svg").default} title="Udemy"/>
-          <Cards image={require("./../../../../assets/img/amazon.svg").default} title="Amazon"/>
-          <Cards image={require("./../../../../assets/img/hbo.svg").default} title="HBO"/>
+        <div className="">
+          <div className="mx-auto py-12 px-4 max-w-7xl sm:px-6 lg:px-8 lg:py-24">
+            <div className="space-y-12">
+              <div className="space-y-5 sm:space-y-4 md:max-w-xl lg:max-w-3xl xl:max-w-none">
+              </div>
+              <ul className="space-y-4 sm:grid sm:grid-cols-2 sm:gap-6 sm:space-y-0 lg:grid-cols-3 lg:gap-8">
+                {
+                  plansWithProvider.map((planWithProvider, index) => (
+                    <SubscripcionCard planWithProvider={planWithProvider} index={index} />
+                  ))
+                }
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
-    </>
-  );
-};
-
-export default Suscripciones;
+    </React.Fragment >
+  )
+}

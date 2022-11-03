@@ -2,8 +2,8 @@ import "./suscripciones.css";
 import { useState, useEffect } from "react";
 import { ethers } from "ethers";
 import { joinGroup } from "../../../../utils/berry-contract";
-import abi from "../../../../contract/abi.json";
-const addres = '0xf25137694E130Fb87735a87C49691054a34cD930'
+import abi from "../../../../contract/Berry.json";
+const addres = process.env.REACT_APP_BERRY_CONTRACT_ADDR
 
 export const Cards = (props) => {
   async function joinGroupD(){
@@ -34,9 +34,9 @@ export const Cards = (props) => {
             <div className="section__grupos-item-container--text">
               <h4>{props.title}</h4>
               <input id="mostrar-modal" name="modal" type="radio" /> 
-              <label for="mostrar-modal"> Ver Grupos </label>
+              <label htmlFor="mostrar-modal"> Ver Grupos </label>
               <input id="cerrar-modal" name="modal" type="radio" /> 
-                <label for="cerrar-modal"> X </label> 
+                <label htmlFor="cerrar-modal"> X </label> 
                 <div id="modal">
                     <div className="modal-grupos">
                         <p onClick={joinGroupD}> Grupo 1</p>

@@ -25,6 +25,40 @@ import type {
 } from "./common";
 
 export declare namespace Berry {
+  export type GroupStruct = {
+    groupID: PromiseOrValue<BigNumberish>;
+    name: PromiseOrValue<string>;
+    totalBalance: PromiseOrValue<BigNumberish>;
+    planID: PromiseOrValue<BigNumberish>;
+    planProviderID: PromiseOrValue<BigNumberish>;
+    numMembers: PromiseOrValue<BigNumberish>;
+    initialized: PromiseOrValue<boolean>;
+    creationTimestamp: PromiseOrValue<BigNumberish>;
+    lastPaymentTimestamp: PromiseOrValue<BigNumberish>;
+  };
+
+  export type GroupStructOutput = [
+    BigNumber,
+    string,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    BigNumber,
+    boolean,
+    BigNumber,
+    BigNumber
+  ] & {
+    groupID: BigNumber;
+    name: string;
+    totalBalance: BigNumber;
+    planID: BigNumber;
+    planProviderID: BigNumber;
+    numMembers: BigNumber;
+    initialized: boolean;
+    creationTimestamp: BigNumber;
+    lastPaymentTimestamp: BigNumber;
+  };
+
   export type UserStruct = {
     owner: PromiseOrValue<string>;
     name: PromiseOrValue<string>;
@@ -56,6 +90,8 @@ export interface BerryInterface extends utils.Interface {
     "addPlan(uint256,string,string,uint256,uint256,uint8)": FunctionFragment;
     "createGroup(uint256,uint256,string)": FunctionFragment;
     "createProvider(string,string,address)": FunctionFragment;
+    "getAllUserGroups(address)": FunctionFragment;
+    "getBio()": FunctionFragment;
     "getName()": FunctionFragment;
     "getUserBerries()": FunctionFragment;
     "groups(uint256)": FunctionFragment;
@@ -70,6 +106,7 @@ export interface BerryInterface extends utils.Interface {
     "plansPerProvider(uint256,uint256)": FunctionFragment;
     "providers(uint256)": FunctionFragment;
     "register(string,string,string)": FunctionFragment;
+    "setBio(string)": FunctionFragment;
     "setName(string)": FunctionFragment;
     "userGroupMembership(uint256,address)": FunctionFragment;
     "users(address)": FunctionFragment;
@@ -78,45 +115,28 @@ export interface BerryInterface extends utils.Interface {
   getFunction(
     nameOrSignatureOrTopic:
       | "addPlan"
-      | "addPlan(uint256,string,string,uint256,uint256,uint8)"
       | "createGroup"
-      | "createGroup(uint256,uint256,string)"
       | "createProvider"
-      | "createProvider(string,string,address)"
+      | "getAllUserGroups"
+      | "getBio"
       | "getName"
-      | "getName()"
       | "getUserBerries"
-      | "getUserBerries()"
       | "groups"
-      | "groups(uint256)"
       | "groupsPerUser"
-      | "groupsPerUser(address,uint256)"
       | "joinGroup"
-      | "joinGroup(uint256)"
       | "leaveGroup"
-      | "leaveGroup(uint256)"
       | "membersPerGroup"
-      | "membersPerGroup(uint256,uint256)"
       | "numGroups"
-      | "numGroups()"
       | "numProviders"
-      | "numProviders()"
       | "numUsers"
-      | "numUsers()"
       | "payRecurrent"
-      | "payRecurrent(uint256)"
       | "plansPerProvider"
-      | "plansPerProvider(uint256,uint256)"
       | "providers"
-      | "providers(uint256)"
       | "register"
-      | "register(string,string,string)"
+      | "setBio"
       | "setName"
-      | "setName(string)"
       | "userGroupMembership"
-      | "userGroupMembership(uint256,address)"
       | "users"
-      | "users(address)"
   ): FunctionFragment;
 
   encodeFunctionData(
@@ -131,26 +151,7 @@ export interface BerryInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "addPlan(uint256,string,string,uint256,uint256,uint8)",
-    values: [
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>
-    ]
-  ): string;
-  encodeFunctionData(
     functionFragment: "createGroup",
-    values: [
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<BigNumberish>,
-      PromiseOrValue<string>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "createGroup(uint256,uint256,string)",
     values: [
       PromiseOrValue<BigNumberish>,
       PromiseOrValue<BigNumberish>,
@@ -166,21 +167,13 @@ export interface BerryInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "createProvider(string,string,address)",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>
-    ]
+    functionFragment: "getAllUserGroups",
+    values: [PromiseOrValue<string>]
   ): string;
+  encodeFunctionData(functionFragment: "getBio", values?: undefined): string;
   encodeFunctionData(functionFragment: "getName", values?: undefined): string;
-  encodeFunctionData(functionFragment: "getName()", values?: undefined): string;
   encodeFunctionData(
     functionFragment: "getUserBerries",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
-    functionFragment: "getUserBerries()",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -188,15 +181,7 @@ export interface BerryInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "groups(uint256)",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "groupsPerUser",
-    values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "groupsPerUser(address,uint256)",
     values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
@@ -204,49 +189,21 @@ export interface BerryInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "joinGroup(uint256)",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "leaveGroup",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "leaveGroup(uint256)",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
     functionFragment: "membersPerGroup",
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
-  encodeFunctionData(
-    functionFragment: "membersPerGroup(uint256,uint256)",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
   encodeFunctionData(functionFragment: "numGroups", values?: undefined): string;
-  encodeFunctionData(
-    functionFragment: "numGroups()",
-    values?: undefined
-  ): string;
   encodeFunctionData(
     functionFragment: "numProviders",
     values?: undefined
   ): string;
-  encodeFunctionData(
-    functionFragment: "numProviders()",
-    values?: undefined
-  ): string;
   encodeFunctionData(functionFragment: "numUsers", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "numUsers()",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "payRecurrent",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "payRecurrent(uint256)",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
@@ -254,15 +211,7 @@ export interface BerryInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
-    functionFragment: "plansPerProvider(uint256,uint256)",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "providers",
-    values: [PromiseOrValue<BigNumberish>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "providers(uint256)",
     values: [PromiseOrValue<BigNumberish>]
   ): string;
   encodeFunctionData(
@@ -274,19 +223,11 @@ export interface BerryInterface extends utils.Interface {
     ]
   ): string;
   encodeFunctionData(
-    functionFragment: "register(string,string,string)",
-    values: [
-      PromiseOrValue<string>,
-      PromiseOrValue<string>,
-      PromiseOrValue<string>
-    ]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "setName",
+    functionFragment: "setBio",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "setName(string)",
+    functionFragment: "setName",
     values: [PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
@@ -294,29 +235,13 @@ export interface BerryInterface extends utils.Interface {
     values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
   ): string;
   encodeFunctionData(
-    functionFragment: "userGroupMembership(uint256,address)",
-    values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
     functionFragment: "users",
-    values: [PromiseOrValue<string>]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "users(address)",
     values: [PromiseOrValue<string>]
   ): string;
 
   decodeFunctionResult(functionFragment: "addPlan", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "addPlan(uint256,string,string,uint256,uint256,uint8)",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
     functionFragment: "createGroup",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "createGroup(uint256,uint256,string)",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -324,109 +249,49 @@ export interface BerryInterface extends utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "createProvider(string,string,address)",
+    functionFragment: "getAllUserGroups",
     data: BytesLike
   ): Result;
+  decodeFunctionResult(functionFragment: "getBio", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "getName", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "getName()", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getUserBerries",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "getUserBerries()",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "groups", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "groups(uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "groupsPerUser",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "groupsPerUser(address,uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "joinGroup", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "joinGroup(uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "leaveGroup", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "leaveGroup(uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "membersPerGroup",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "membersPerGroup(uint256,uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "numGroups", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "numGroups()",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "numProviders",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "numProviders()",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "numUsers", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "numUsers()", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "payRecurrent",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "payRecurrent(uint256)",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
     functionFragment: "plansPerProvider",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "plansPerProvider(uint256,uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "providers", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "providers(uint256)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "register", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "register(string,string,string)",
-    data: BytesLike
-  ): Result;
+  decodeFunctionResult(functionFragment: "setBio", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "setName", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "setName(string)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(
     functionFragment: "userGroupMembership",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "userGroupMembership(uint256,address)",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "users", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "users(address)",
-    data: BytesLike
-  ): Result;
 
   events: {};
 }
@@ -468,24 +333,7 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "addPlan(uint256,string,string,uint256,uint256,uint8)"(
-      providerID: PromiseOrValue<BigNumberish>,
-      name: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
-      recurrence: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      maxMembers: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     createGroup(
-      providerID: PromiseOrValue<BigNumberish>,
-      planID: PromiseOrValue<BigNumberish>,
-      groupName: PromiseOrValue<string>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "createGroup(uint256,uint256,string)"(
       providerID: PromiseOrValue<BigNumberish>,
       planID: PromiseOrValue<BigNumberish>,
       groupName: PromiseOrValue<string>,
@@ -499,26 +347,25 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "createProvider(string,string,address)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      owner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
+    getAllUserGroups(
+      userAdress: PromiseOrValue<string>,
+      overrides?: CallOverrides
+    ): Promise<
+      [Berry.GroupStructOutput[]] & { userGroups: Berry.GroupStructOutput[] }
+    >;
+
+    getBio(overrides?: CallOverrides): Promise<[string]>;
 
     getName(overrides?: CallOverrides): Promise<[string]>;
 
-    "getName()"(overrides?: CallOverrides): Promise<[string]>;
-
     getUserBerries(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "getUserBerries()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     groups(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
       [
+        BigNumber,
         string,
         BigNumber,
         BigNumber,
@@ -528,31 +375,7 @@ export interface Berry extends BaseContract {
         BigNumber,
         BigNumber
       ] & {
-        name: string;
-        totalBalance: BigNumber;
-        planID: BigNumber;
-        planProviderID: BigNumber;
-        numMembers: BigNumber;
-        initialized: boolean;
-        creationTimestamp: BigNumber;
-        lastPaymentTimestamp: BigNumber;
-      }
-    >;
-
-    "groups(uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        string,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        boolean,
-        BigNumber,
-        BigNumber
-      ] & {
+        groupID: BigNumber;
         name: string;
         totalBalance: BigNumber;
         planID: BigNumber;
@@ -570,6 +393,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<
       [
+        BigNumber,
         string,
         BigNumber,
         BigNumber,
@@ -579,32 +403,7 @@ export interface Berry extends BaseContract {
         BigNumber,
         BigNumber
       ] & {
-        name: string;
-        totalBalance: BigNumber;
-        planID: BigNumber;
-        planProviderID: BigNumber;
-        numMembers: BigNumber;
-        initialized: boolean;
-        creationTimestamp: BigNumber;
-        lastPaymentTimestamp: BigNumber;
-      }
-    >;
-
-    "groupsPerUser(address,uint256)"(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        string,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        boolean,
-        BigNumber,
-        BigNumber
-      ] & {
+        groupID: BigNumber;
         name: string;
         totalBalance: BigNumber;
         planID: BigNumber;
@@ -621,17 +420,7 @@ export interface Berry extends BaseContract {
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "joinGroup(uint256)"(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     leaveGroup(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
-    "leaveGroup(uint256)"(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
@@ -648,67 +437,18 @@ export interface Berry extends BaseContract {
       }
     >;
 
-    "membersPerGroup(uint256,uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, Berry.UserStructOutput, BigNumber] & {
-        groupID: BigNumber;
-        member: Berry.UserStructOutput;
-        balance: BigNumber;
-      }
-    >;
-
     numGroups(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "numGroups()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     numProviders(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    "numProviders()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     numUsers(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "numUsers()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     payRecurrent(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "payRecurrent(uint256)"(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     plansPerProvider(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        BigNumber,
-        string,
-        string,
-        BigNumber,
-        BigNumber,
-        boolean,
-        number,
-        BigNumber
-      ] & {
-        providerID: BigNumber;
-        name: string;
-        description: string;
-        recurrence: BigNumber;
-        price: BigNumber;
-        active: boolean;
-        maxMembers: number;
-        pricePerMember: BigNumber;
-      }
-    >;
-
-    "plansPerProvider(uint256,uint256)"(
       arg0: PromiseOrValue<BigNumberish>,
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -747,19 +487,6 @@ export interface Berry extends BaseContract {
       }
     >;
 
-    "providers(uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, string, string, string, BigNumber] & {
-        providerID: BigNumber;
-        name: string;
-        imageURL: string;
-        serviceOwner: string;
-        numPlans: BigNumber;
-      }
-    >;
-
     register(
       name: PromiseOrValue<string>,
       imageURL: PromiseOrValue<string>,
@@ -767,10 +494,8 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "register(string,string,string)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
+    setBio(
+      bio: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
@@ -779,24 +504,7 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<ContractTransaction>;
 
-    "setName(string)"(
-      name: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<ContractTransaction>;
-
     userGroupMembership(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, Berry.UserStructOutput, BigNumber] & {
-        groupID: BigNumber;
-        member: Berry.UserStructOutput;
-        balance: BigNumber;
-      }
-    >;
-
-    "userGroupMembership(uint256,address)"(
       arg0: PromiseOrValue<BigNumberish>,
       arg1: PromiseOrValue<string>,
       overrides?: CallOverrides
@@ -821,33 +529,9 @@ export interface Berry extends BaseContract {
         description: string;
       }
     >;
-
-    "users(address)"(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<
-      [string, string, BigNumber, BigNumber, string, string] & {
-        owner: string;
-        name: string;
-        berries: BigNumber;
-        numGroups: BigNumber;
-        imageURL: string;
-        description: string;
-      }
-    >;
   };
 
   addPlan(
-    providerID: PromiseOrValue<BigNumberish>,
-    name: PromiseOrValue<string>,
-    description: PromiseOrValue<string>,
-    recurrence: PromiseOrValue<BigNumberish>,
-    price: PromiseOrValue<BigNumberish>,
-    maxMembers: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "addPlan(uint256,string,string,uint256,uint256,uint8)"(
     providerID: PromiseOrValue<BigNumberish>,
     name: PromiseOrValue<string>,
     description: PromiseOrValue<string>,
@@ -864,13 +548,6 @@ export interface Berry extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "createGroup(uint256,uint256,string)"(
-    providerID: PromiseOrValue<BigNumberish>,
-    planID: PromiseOrValue<BigNumberish>,
-    groupName: PromiseOrValue<string>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   createProvider(
     name: PromiseOrValue<string>,
     imageURL: PromiseOrValue<string>,
@@ -878,26 +555,23 @@ export interface Berry extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "createProvider(string,string,address)"(
-    name: PromiseOrValue<string>,
-    imageURL: PromiseOrValue<string>,
-    owner: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
+  getAllUserGroups(
+    userAdress: PromiseOrValue<string>,
+    overrides?: CallOverrides
+  ): Promise<Berry.GroupStructOutput[]>;
+
+  getBio(overrides?: CallOverrides): Promise<string>;
 
   getName(overrides?: CallOverrides): Promise<string>;
 
-  "getName()"(overrides?: CallOverrides): Promise<string>;
-
   getUserBerries(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "getUserBerries()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   groups(
     arg0: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
   ): Promise<
     [
+      BigNumber,
       string,
       BigNumber,
       BigNumber,
@@ -907,31 +581,7 @@ export interface Berry extends BaseContract {
       BigNumber,
       BigNumber
     ] & {
-      name: string;
-      totalBalance: BigNumber;
-      planID: BigNumber;
-      planProviderID: BigNumber;
-      numMembers: BigNumber;
-      initialized: boolean;
-      creationTimestamp: BigNumber;
-      lastPaymentTimestamp: BigNumber;
-    }
-  >;
-
-  "groups(uint256)"(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [
-      string,
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      boolean,
-      BigNumber,
-      BigNumber
-    ] & {
+      groupID: BigNumber;
       name: string;
       totalBalance: BigNumber;
       planID: BigNumber;
@@ -949,6 +599,7 @@ export interface Berry extends BaseContract {
     overrides?: CallOverrides
   ): Promise<
     [
+      BigNumber,
       string,
       BigNumber,
       BigNumber,
@@ -958,32 +609,7 @@ export interface Berry extends BaseContract {
       BigNumber,
       BigNumber
     ] & {
-      name: string;
-      totalBalance: BigNumber;
-      planID: BigNumber;
-      planProviderID: BigNumber;
-      numMembers: BigNumber;
-      initialized: boolean;
-      creationTimestamp: BigNumber;
-      lastPaymentTimestamp: BigNumber;
-    }
-  >;
-
-  "groupsPerUser(address,uint256)"(
-    arg0: PromiseOrValue<string>,
-    arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [
-      string,
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      BigNumber,
-      boolean,
-      BigNumber,
-      BigNumber
-    ] & {
+      groupID: BigNumber;
       name: string;
       totalBalance: BigNumber;
       planID: BigNumber;
@@ -1000,17 +626,7 @@ export interface Berry extends BaseContract {
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "joinGroup(uint256)"(
-    groupID: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   leaveGroup(
-    groupID: PromiseOrValue<BigNumberish>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
-  "leaveGroup(uint256)"(
     groupID: PromiseOrValue<BigNumberish>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
@@ -1027,67 +643,18 @@ export interface Berry extends BaseContract {
     }
   >;
 
-  "membersPerGroup(uint256,uint256)"(
-    arg0: PromiseOrValue<BigNumberish>,
-    arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [BigNumber, Berry.UserStructOutput, BigNumber] & {
-      groupID: BigNumber;
-      member: Berry.UserStructOutput;
-      balance: BigNumber;
-    }
-  >;
-
   numGroups(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "numGroups()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   numProviders(overrides?: CallOverrides): Promise<BigNumber>;
 
-  "numProviders()"(overrides?: CallOverrides): Promise<BigNumber>;
-
   numUsers(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "numUsers()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   payRecurrent(
     groupID: PromiseOrValue<BigNumberish>,
     overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "payRecurrent(uint256)"(
-    groupID: PromiseOrValue<BigNumberish>,
-    overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   plansPerProvider(
-    arg0: PromiseOrValue<BigNumberish>,
-    arg1: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [
-      BigNumber,
-      string,
-      string,
-      BigNumber,
-      BigNumber,
-      boolean,
-      number,
-      BigNumber
-    ] & {
-      providerID: BigNumber;
-      name: string;
-      description: string;
-      recurrence: BigNumber;
-      price: BigNumber;
-      active: boolean;
-      maxMembers: number;
-      pricePerMember: BigNumber;
-    }
-  >;
-
-  "plansPerProvider(uint256,uint256)"(
     arg0: PromiseOrValue<BigNumberish>,
     arg1: PromiseOrValue<BigNumberish>,
     overrides?: CallOverrides
@@ -1126,19 +693,6 @@ export interface Berry extends BaseContract {
     }
   >;
 
-  "providers(uint256)"(
-    arg0: PromiseOrValue<BigNumberish>,
-    overrides?: CallOverrides
-  ): Promise<
-    [BigNumber, string, string, string, BigNumber] & {
-      providerID: BigNumber;
-      name: string;
-      imageURL: string;
-      serviceOwner: string;
-      numPlans: BigNumber;
-    }
-  >;
-
   register(
     name: PromiseOrValue<string>,
     imageURL: PromiseOrValue<string>,
@@ -1146,10 +700,8 @@ export interface Berry extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "register(string,string,string)"(
-    name: PromiseOrValue<string>,
-    imageURL: PromiseOrValue<string>,
-    description: PromiseOrValue<string>,
+  setBio(
+    bio: PromiseOrValue<string>,
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
@@ -1158,24 +710,7 @@ export interface Berry extends BaseContract {
     overrides?: Overrides & { from?: PromiseOrValue<string> }
   ): Promise<ContractTransaction>;
 
-  "setName(string)"(
-    name: PromiseOrValue<string>,
-    overrides?: Overrides & { from?: PromiseOrValue<string> }
-  ): Promise<ContractTransaction>;
-
   userGroupMembership(
-    arg0: PromiseOrValue<BigNumberish>,
-    arg1: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<
-    [BigNumber, Berry.UserStructOutput, BigNumber] & {
-      groupID: BigNumber;
-      member: Berry.UserStructOutput;
-      balance: BigNumber;
-    }
-  >;
-
-  "userGroupMembership(uint256,address)"(
     arg0: PromiseOrValue<BigNumberish>,
     arg1: PromiseOrValue<string>,
     overrides?: CallOverrides
@@ -1201,32 +736,8 @@ export interface Berry extends BaseContract {
     }
   >;
 
-  "users(address)"(
-    arg0: PromiseOrValue<string>,
-    overrides?: CallOverrides
-  ): Promise<
-    [string, string, BigNumber, BigNumber, string, string] & {
-      owner: string;
-      name: string;
-      berries: BigNumber;
-      numGroups: BigNumber;
-      imageURL: string;
-      description: string;
-    }
-  >;
-
   callStatic: {
     addPlan(
-      providerID: PromiseOrValue<BigNumberish>,
-      name: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
-      recurrence: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      maxMembers: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "addPlan(uint256,string,string,uint256,uint256,uint8)"(
       providerID: PromiseOrValue<BigNumberish>,
       name: PromiseOrValue<string>,
       description: PromiseOrValue<string>,
@@ -1243,13 +754,6 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "createGroup(uint256,uint256,string)"(
-      providerID: PromiseOrValue<BigNumberish>,
-      planID: PromiseOrValue<BigNumberish>,
-      groupName: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     createProvider(
       name: PromiseOrValue<string>,
       imageURL: PromiseOrValue<string>,
@@ -1257,26 +761,23 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "createProvider(string,string,address)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      owner: PromiseOrValue<string>,
+    getAllUserGroups(
+      userAdress: PromiseOrValue<string>,
       overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    ): Promise<Berry.GroupStructOutput[]>;
+
+    getBio(overrides?: CallOverrides): Promise<string>;
 
     getName(overrides?: CallOverrides): Promise<string>;
 
-    "getName()"(overrides?: CallOverrides): Promise<string>;
-
     getUserBerries(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "getUserBerries()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     groups(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<
       [
+        BigNumber,
         string,
         BigNumber,
         BigNumber,
@@ -1286,31 +787,7 @@ export interface Berry extends BaseContract {
         BigNumber,
         BigNumber
       ] & {
-        name: string;
-        totalBalance: BigNumber;
-        planID: BigNumber;
-        planProviderID: BigNumber;
-        numMembers: BigNumber;
-        initialized: boolean;
-        creationTimestamp: BigNumber;
-        lastPaymentTimestamp: BigNumber;
-      }
-    >;
-
-    "groups(uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        string,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        boolean,
-        BigNumber,
-        BigNumber
-      ] & {
+        groupID: BigNumber;
         name: string;
         totalBalance: BigNumber;
         planID: BigNumber;
@@ -1328,6 +805,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<
       [
+        BigNumber,
         string,
         BigNumber,
         BigNumber,
@@ -1337,32 +815,7 @@ export interface Berry extends BaseContract {
         BigNumber,
         BigNumber
       ] & {
-        name: string;
-        totalBalance: BigNumber;
-        planID: BigNumber;
-        planProviderID: BigNumber;
-        numMembers: BigNumber;
-        initialized: boolean;
-        creationTimestamp: BigNumber;
-        lastPaymentTimestamp: BigNumber;
-      }
-    >;
-
-    "groupsPerUser(address,uint256)"(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        string,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        BigNumber,
-        boolean,
-        BigNumber,
-        BigNumber
-      ] & {
+        groupID: BigNumber;
         name: string;
         totalBalance: BigNumber;
         planID: BigNumber;
@@ -1379,17 +832,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    "joinGroup(uint256)"(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
     leaveGroup(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "leaveGroup(uint256)"(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<boolean>;
@@ -1406,67 +849,18 @@ export interface Berry extends BaseContract {
       }
     >;
 
-    "membersPerGroup(uint256,uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, Berry.UserStructOutput, BigNumber] & {
-        groupID: BigNumber;
-        member: Berry.UserStructOutput;
-        balance: BigNumber;
-      }
-    >;
-
     numGroups(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "numGroups()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     numProviders(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "numProviders()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     numUsers(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "numUsers()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     payRecurrent(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "payRecurrent(uint256)"(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
     plansPerProvider(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [
-        BigNumber,
-        string,
-        string,
-        BigNumber,
-        BigNumber,
-        boolean,
-        number,
-        BigNumber
-      ] & {
-        providerID: BigNumber;
-        name: string;
-        description: string;
-        recurrence: BigNumber;
-        price: BigNumber;
-        active: boolean;
-        maxMembers: number;
-        pricePerMember: BigNumber;
-      }
-    >;
-
-    "plansPerProvider(uint256,uint256)"(
       arg0: PromiseOrValue<BigNumberish>,
       arg1: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
@@ -1505,19 +899,6 @@ export interface Berry extends BaseContract {
       }
     >;
 
-    "providers(uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, string, string, string, BigNumber] & {
-        providerID: BigNumber;
-        name: string;
-        imageURL: string;
-        serviceOwner: string;
-        numPlans: BigNumber;
-      }
-    >;
-
     register(
       name: PromiseOrValue<string>,
       imageURL: PromiseOrValue<string>,
@@ -1525,19 +906,12 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "register(string,string,string)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
+    setBio(
+      bio: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
 
     setName(
-      name: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<void>;
-
-    "setName(string)"(
       name: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<void>;
@@ -1554,33 +928,7 @@ export interface Berry extends BaseContract {
       }
     >;
 
-    "userGroupMembership(uint256,address)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<
-      [BigNumber, Berry.UserStructOutput, BigNumber] & {
-        groupID: BigNumber;
-        member: Berry.UserStructOutput;
-        balance: BigNumber;
-      }
-    >;
-
     users(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<
-      [string, string, BigNumber, BigNumber, string, string] & {
-        owner: string;
-        name: string;
-        berries: BigNumber;
-        numGroups: BigNumber;
-        imageURL: string;
-        description: string;
-      }
-    >;
-
-    "users(address)"(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<
@@ -1608,24 +956,7 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    "addPlan(uint256,string,string,uint256,uint256,uint8)"(
-      providerID: PromiseOrValue<BigNumberish>,
-      name: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
-      recurrence: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      maxMembers: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     createGroup(
-      providerID: PromiseOrValue<BigNumberish>,
-      planID: PromiseOrValue<BigNumberish>,
-      groupName: PromiseOrValue<string>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "createGroup(uint256,uint256,string)"(
       providerID: PromiseOrValue<BigNumberish>,
       planID: PromiseOrValue<BigNumberish>,
       groupName: PromiseOrValue<string>,
@@ -1639,27 +970,18 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    "createProvider(string,string,address)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      owner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    getName(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "getName()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    getUserBerries(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "getUserBerries()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    groups(
-      arg0: PromiseOrValue<BigNumberish>,
+    getAllUserGroups(
+      userAdress: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "groups(uint256)"(
+    getBio(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getName(overrides?: CallOverrides): Promise<BigNumber>;
+
+    getUserBerries(overrides?: CallOverrides): Promise<BigNumber>;
+
+    groups(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -1670,28 +992,12 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "groupsPerUser(address,uint256)"(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     joinGroup(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    "joinGroup(uint256)"(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
     leaveGroup(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "leaveGroup(uint256)"(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -1702,30 +1008,13 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "membersPerGroup(uint256,uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     numGroups(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "numGroups()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     numProviders(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "numProviders()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     numUsers(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "numUsers()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     payRecurrent(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "payRecurrent(uint256)"(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -1736,18 +1025,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "plansPerProvider(uint256,uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     providers(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "providers(uint256)"(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -1759,19 +1037,12 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
-    "register(string,string,string)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
+    setBio(
+      bio: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
 
     setName(
-      name: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<BigNumber>;
-
-    "setName(string)"(
       name: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<BigNumber>;
@@ -1782,18 +1053,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "userGroupMembership(uint256,address)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
     users(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "users(address)"(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
@@ -1810,24 +1070,7 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    "addPlan(uint256,string,string,uint256,uint256,uint8)"(
-      providerID: PromiseOrValue<BigNumberish>,
-      name: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
-      recurrence: PromiseOrValue<BigNumberish>,
-      price: PromiseOrValue<BigNumberish>,
-      maxMembers: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     createGroup(
-      providerID: PromiseOrValue<BigNumberish>,
-      planID: PromiseOrValue<BigNumberish>,
-      groupName: PromiseOrValue<string>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "createGroup(uint256,uint256,string)"(
       providerID: PromiseOrValue<BigNumberish>,
       planID: PromiseOrValue<BigNumberish>,
       groupName: PromiseOrValue<string>,
@@ -1841,29 +1084,18 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    "createProvider(string,string,address)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      owner: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
+    getAllUserGroups(
+      userAdress: PromiseOrValue<string>,
+      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
+
+    getBio(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     getName(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "getName()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     getUserBerries(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "getUserBerries()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     groups(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "groups(uint256)"(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -1874,28 +1106,12 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "groupsPerUser(address,uint256)"(
-      arg0: PromiseOrValue<string>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     joinGroup(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    "joinGroup(uint256)"(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
     leaveGroup(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "leaveGroup(uint256)"(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
@@ -1906,30 +1122,13 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "membersPerGroup(uint256,uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     numGroups(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "numGroups()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     numProviders(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "numProviders()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     numUsers(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "numUsers()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     payRecurrent(
-      groupID: PromiseOrValue<BigNumberish>,
-      overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "payRecurrent(uint256)"(
       groupID: PromiseOrValue<BigNumberish>,
       overrides?: PayableOverrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
@@ -1940,18 +1139,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "plansPerProvider(uint256,uint256)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     providers(
-      arg0: PromiseOrValue<BigNumberish>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "providers(uint256)"(
       arg0: PromiseOrValue<BigNumberish>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
@@ -1963,19 +1151,12 @@ export interface Berry extends BaseContract {
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
-    "register(string,string,string)"(
-      name: PromiseOrValue<string>,
-      imageURL: PromiseOrValue<string>,
-      description: PromiseOrValue<string>,
+    setBio(
+      bio: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
 
     setName(
-      name: PromiseOrValue<string>,
-      overrides?: Overrides & { from?: PromiseOrValue<string> }
-    ): Promise<PopulatedTransaction>;
-
-    "setName(string)"(
       name: PromiseOrValue<string>,
       overrides?: Overrides & { from?: PromiseOrValue<string> }
     ): Promise<PopulatedTransaction>;
@@ -1986,18 +1167,7 @@ export interface Berry extends BaseContract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "userGroupMembership(uint256,address)"(
-      arg0: PromiseOrValue<BigNumberish>,
-      arg1: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     users(
-      arg0: PromiseOrValue<string>,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "users(address)"(
       arg0: PromiseOrValue<string>,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;

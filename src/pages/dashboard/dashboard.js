@@ -12,14 +12,13 @@ import {
   getAllGroups,
   getBerrys,
 } from "../../utils/berry-contract";
-import abi from "../../contract/abi.json";
+import abi from "../../contract/Berry.json";
 import { ethers, BigNumber } from "ethers";
 import Balance from "./dashboardComponets/balance/Balance";
 import { useState } from "react";
 
-const addres = "0xf25137694E130Fb87735a87C49691054a34cD930";
-const Dashboard = ({account, setAccount, signer, setSigner}) => {
-
+const addres = process.env.REACT_APP_BERRY_CONTRACT_ADDR;
+const Dashboard = (account, setAccount) => {
   const [balance, setBalance] = useState(0);
   const [berry, setBerry] = useState(0);
 
@@ -223,6 +222,16 @@ const Dashboard = ({account, setAccount, signer, setSigner}) => {
                 })}
               >
                 Modal
+              </NavLink>
+
+              <NavLink
+                className="dash-link"
+                to="/dashboard/proveedores"
+                style={({ isActive }) => ({
+                  color: isActive ? "#6c61dd" : "#fff",
+                })}
+              >
+                Proveedores
               </NavLink>
             </div>
 

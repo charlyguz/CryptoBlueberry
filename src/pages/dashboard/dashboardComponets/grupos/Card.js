@@ -4,7 +4,7 @@ import { ethers, BigNumber } from "ethers";
 import { getUserGroups } from "../../../../utils/berry-contract";
 
 
-const addres = "0xf25137694E130Fb87735a87C49691054a34cD930";
+const addres = process.env.REACT_APP_BERRY_CONTRACT_ADDR;
 export const Card = () => {
   // export const getAllGroups = async (berry: Berry ) => {
   //   const totalGroups = (await berry.numGroups()).toNumber()
