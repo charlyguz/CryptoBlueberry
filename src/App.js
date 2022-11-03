@@ -21,16 +21,31 @@ import Grupos from "./pages/dashboard/dashboardComponets/grupos/Grupos";
 import GruposModal from './pages/dashboard/dashboardComponets/grupos/grupos-por-plan/GruposModal'
 
 import "./App.css";
+import { useEffect } from "react";
+// import { get } from "https";
+///////////
+
 
   
 function App() {
-  const [ account , setAccount  ] = useState ([]);
-  const [ signer , setSigner  ] = useState ( null );
+  const [ account, setAccount  ] = useState ([]);
+  const [ signer, setSigner  ] = useState ( [] );
   
+  
+  // async function getSignerD(){
+  //   const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //   setSigner(provider.getSigner());
+  //   console.log(signer);
+  //   console.log((await signer.getBalance()).toString());
+  // }
+  // useEffect(() => {
+  //   // getSignerD()
+  // }, []);
+
   return (
     <Router>
         <Routes>
-          <Route path="/" exact element={<Home signer = {signer} setSigner = {setSigner} account = {account} setAccount = {setAccount}/>}>
+          <Route path="/" exact element={<Home signer={signer} setSigner = {setSigner} account = {account} setAccount = {setAccount}/>}>
           </Route>
           
           <Route path="/dashboard" exact element={<Dashboard signer = {signer} setSigner = {setSigner} account = {account} setAccount = {setAccount}/>}>

@@ -18,19 +18,24 @@ import Balance from "./dashboardComponets/balance/Balance";
 import { useState } from "react";
 
 const addres = "0xf25137694E130Fb87735a87C49691054a34cD930";
-const Dashboard = (account, setAccount) => {
+const Dashboard = ({account, setAccount, signer, setSigner}) => {
+
   const [balance, setBalance] = useState(0);
   const [berry, setBerry] = useState(0);
+
+
   async function getbalance() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       setBalance(
-        await ethers.utils.formatEther((await signer.getBalance()).toString())
+        ethers.utils.formatEther((await signer.getBalance()).toString())
       );
+
       console.log(balance);
     }
   }
+
   async function createProvider() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -128,6 +133,7 @@ const Dashboard = (account, setAccount) => {
       }
     }
   }
+
   async function getBerrysD() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -145,7 +151,7 @@ const Dashboard = (account, setAccount) => {
   useEffect(() => {
     getbalance()
     getBerrysD()
-  }, []);
+  }, [account]);
 
 
   return (
