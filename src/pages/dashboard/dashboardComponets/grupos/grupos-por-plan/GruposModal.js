@@ -1,90 +1,47 @@
 import { Dialog, Transition } from "@headlessui/react";
-import React, { Fragment, useState } from "react";
-import { useEffect } from "react";
+import abi from "contract/Berry.json";
+import { ethers } from "ethers";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   getAllGroups,
-  getUserGroups,
+  getPlan
 } from "../../../../../utils/berry-contract";
-import { ethers } from "ethers";
-import abi from "contract/Berry.json";
 
 import GrupoListaItem from "./grupo-lista/GrupoListaItem";
-import { UsersIcon } from "@heroicons/react/solid";
-import { BigNumber } from "ethers";
 
-const groups = [
-  {
-    groupID: BigNumber.from(1),
-    name: "grupo 1",
-    totalBalance: ethers.utils.parseEther("0.002"),
-    planID: BigNumber.from(1),
-    planProviderID: BigNumber.from(0),
-    numMembers: BigNumber.from(3),
-    initialized: true,
-    creationTimestamp: BigNumber.from(new Date().getTime()),
-    lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
-
-    plan: {
-      providerID: BigNumber.from(0),
-      name: "Duolingo+ 3 personas",
-      description: "Dulingo familar",
-      recurrence: BigNumber.from(30),
-      price: ethers.utils.parseEther("0.003"),
-      active: true,
-      maxMembers: BigNumber.from(3),
-      pricePerMember: ethers.utils.parseEther("0.001"),
-    },
-  },
-  {
-    groupID: BigNumber.from(2),
-    name: "grupo 2",
-    totalBalance: ethers.utils.parseEther("0.0002"),
-    planID: BigNumber.from(2),
-    planProviderID: BigNumber.from(1),
-    numMembers: BigNumber.from(6),
-    initialized: true,
-    creationTimestamp: BigNumber.from(new Date().getTime()),
-    lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
-
-    plan: {
-      providerID: BigNumber.from(1),
-      name: "Duolingo+ 6 personas",
-      description: "Dulingo familar",
-      recurrence: BigNumber.from(30),
-      price: ethers.utils.parseEther("0.005"),
-      active: true,
-      maxMembers: BigNumber.from(6),
-      pricePerMember: ethers.utils.parseEther("0.001"),
-    },
-  },
-];
-
-export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
-
-  let [allGroups, setAllGroups] = useState(groups);
+export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
+  let [allGroups, setAllGroups] = useState([]);
   let [allProviders, setAllProviders] = useState([]);
+  let [allGroupsWithProvider, setAllGroupsWithProvider] = useState([])
 
-  // useEffect(() => {
-  //   (async function () {
-  //     if (window.ethereum) {
-  //       const provider = new ethers.providers.Web3Provider(window.ethereum);
-  //       const signer = provider.getSigner();
-  //       const contract = new ethers.Contract(
-  //         process.env.REACT_APP_BERRY_CONTRACT_ADDR,
-  //         abi.abi,
-  //         signer
-  //       );
-  //       try {
-  //         const result = await getUserGroups(contract, signer);
-  //         console.log(result);
-  //         setAllGroups(result)
-  //       }
-  //       catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   })()
-  // }, [])
+  useEffect(() => {
+    (async function () {
+      if (window.ethereum) {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        const signer = provider.getSigner();
+        const contract = new ethers.Contract(
+          process.env.REACT_APP_BERRY_CONTRACT_ADDR,
+          abi.abi,
+          signer
+        );
+        try {
+          const result = await getAllGroups(contract, signer);
+          console.log(result);
+
+          const groupsWithProvider = await Promise.all(result.map(async (group) => {
+            return {
+              ...group,
+              plan: await getPlan(contract, group.planProviderID, group.planID)
+            }
+          }))
+          setAllGroupsWithProvider(groupsWithProvider)
+        }
+        catch (error) {
+          console.log(error);
+        }
+      }
+    })()
+  }, [])
 
   function closeModal() {
     setIsOpen(false);
@@ -96,7 +53,7 @@ export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
 
   return (
     <React.Fragment>
-      
+
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -132,7 +89,7 @@ export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
                   </Dialog.Title>
                   <div className="bg-white overflow-hidden sm:rounded-md">
                     <ul className="divide-y">
-                      {allGroups.map((currentGroup, idx) => (
+                      {allGroupsWithProvider.map((currentGroup, idx) => (
                         <li key={idx}>
                           <GrupoListaItem group={currentGroup} />
                         </li>
