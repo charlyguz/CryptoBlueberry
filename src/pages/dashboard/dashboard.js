@@ -21,16 +21,20 @@ const addres = process.env.REACT_APP_BERRY_CONTRACT_ADDR;
 const Dashboard = (account, setAccount) => {
   const [balance, setBalance] = useState(0);
   const [berry, setBerry] = useState(0);
+
+
   async function getbalance() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       setBalance(
-        await ethers.utils.formatEther((await signer.getBalance()).toString())
+        ethers.utils.formatEther((await signer.getBalance()).toString())
       );
+
       console.log(balance);
     }
   }
+
   async function createProvider() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -128,6 +132,7 @@ const Dashboard = (account, setAccount) => {
       }
     }
   }
+
   async function getBerrysD() {
     if (window.ethereum) {
       const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -145,7 +150,7 @@ const Dashboard = (account, setAccount) => {
   useEffect(() => {
     getbalance()
     getBerrysD()
-  }, []);
+  }, [account]);
 
 
   return (
