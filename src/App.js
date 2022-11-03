@@ -40,7 +40,7 @@ function App() {
                 <Route path="transacciones" exact element={<Transacciones />}></Route>
                 <Route path="grupos" exact element={<Grupos signer = {signer} setSigner = {setSigner}/>}></Route>
           </Route>
-
+          
           <Route path="*" element={<Navigate to ="/" />}/>
         </Routes>
     </Router>
