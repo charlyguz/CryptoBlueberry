@@ -140,10 +140,10 @@ export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
                     </ul>
                   </div>
 
-                  <div className="mt-4 ">
+                  <div className="flex justify-end mt-4 ">
                     <button
                       type="button"
-                      className="inline-flex mr-4 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex mr-4 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-600 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Ok
@@ -151,7 +151,7 @@ export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
 
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="text-white inline-flex justify-center rounded-md border border-transparent bg-blue-500 px-4 py-2 text-sm font-medium  hover:bg-blue-600 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={() => setOpenSub(true)}
                     >
                       Crear Grupo
