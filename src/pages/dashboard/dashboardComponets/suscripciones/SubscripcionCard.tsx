@@ -1,6 +1,7 @@
 import { ethers } from "ethers";
 import React, { useState } from "react";
 import GruopModal from "./GruopModal";
+import GruposModal from "../grupos/grupos-por-plan/GruposModal";
 
 import {
   PlanWithProvider
@@ -14,10 +15,12 @@ export default function SubscripcionCard({
   index: number;
 }) {
   const [open, setOpen] = useState(false);
+  const [openSub, setOpenSub] = useState(false);
 
   return (
     <React.Fragment>
-      <GruopModal planId={1} providerId={1} open={open} setOpen={setOpen}></GruopModal>
+      <GruposModal isOpen={open} setIsOpen={setOpen} setOpenSub={setOpenSub}></GruposModal>
+      <GruopModal planId={1} providerId={1} open={openSub} setOpen={setOpenSub}></GruopModal>
       <li
         key={index}
         className="py-10 px-6 bg-slate-500 text-center rounded-lg"

@@ -1,41 +1,44 @@
-import { Dialog, Transition } from '@headlessui/react'
-import React, { Fragment, useState } from 'react'
-import { useEffect } from 'react'
-import { getAllGroups, getUserGroups } from '../../../../../utils/berry-contract'
-import { ethers } from 'ethers'
-import abi from 'contract/Berry.json'
+import { Dialog, Transition } from "@headlessui/react";
+import React, { Fragment, useState } from "react";
+import { useEffect } from "react";
+import {
+  getAllGroups,
+  getUserGroups,
+} from "../../../../../utils/berry-contract";
+import { ethers } from "ethers";
+import abi from "contract/Berry.json";
 
-import GrupoListaItem from './grupo-lista/GrupoListaItem'
-import { UsersIcon } from '@heroicons/react/solid'
-import { BigNumber } from 'ethers'
+import GrupoListaItem from "./grupo-lista/GrupoListaItem";
+import { UsersIcon } from "@heroicons/react/solid";
+import { BigNumber } from "ethers";
 
 const groups = [
   {
     groupID: BigNumber.from(1),
-    name: 'grupo 1',
-    totalBalance: ethers.utils.parseEther('0.002'),
+    name: "grupo 1",
+    totalBalance: ethers.utils.parseEther("0.002"),
     planID: BigNumber.from(1),
     planProviderID: BigNumber.from(0),
     numMembers: BigNumber.from(3),
     initialized: true,
     creationTimestamp: BigNumber.from(new Date().getTime()),
     lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
-    
+
     plan: {
       providerID: BigNumber.from(0),
-      name: 'Duolingo+ 3 personas',
-      description: 'Dulingo familar',
+      name: "Duolingo+ 3 personas",
+      description: "Dulingo familar",
       recurrence: BigNumber.from(30),
-      price: ethers.utils.parseEther('0.003'),
+      price: ethers.utils.parseEther("0.003"),
       active: true,
       maxMembers: BigNumber.from(3),
-      pricePerMember: ethers.utils.parseEther('0.001'),
-    }
+      pricePerMember: ethers.utils.parseEther("0.001"),
+    },
   },
   {
     groupID: BigNumber.from(2),
-    name: 'grupo 2',
-    totalBalance: ethers.utils.parseEther('0.0002'),
+    name: "grupo 2",
+    totalBalance: ethers.utils.parseEther("0.0002"),
     planID: BigNumber.from(2),
     planProviderID: BigNumber.from(1),
     numMembers: BigNumber.from(6),
@@ -45,23 +48,21 @@ const groups = [
 
     plan: {
       providerID: BigNumber.from(1),
-      name: 'Duolingo+ 6 personas',
-      description: 'Dulingo familar',
+      name: "Duolingo+ 6 personas",
+      description: "Dulingo familar",
       recurrence: BigNumber.from(30),
-      price: ethers.utils.parseEther('0.005'),
+      price: ethers.utils.parseEther("0.005"),
       active: true,
       maxMembers: BigNumber.from(6),
-      pricePerMember: ethers.utils.parseEther('0.001'),
-    }
-  }
-]
+      pricePerMember: ethers.utils.parseEther("0.001"),
+    },
+  },
+];
 
+export default function MyModal({isOpen, setIsOpen, setOpenSub}) {
 
-export default function MyModal() {
-  let [isOpen, setIsOpen] = useState(false)
-
-  let [allGroups, setAllGroups] = useState(groups)
-  let [allProviders, setAllProviders] = useState([])
+  let [allGroups, setAllGroups] = useState(groups);
+  let [allProviders, setAllProviders] = useState([]);
 
   // useEffect(() => {
   //   (async function () {
@@ -86,31 +87,16 @@ export default function MyModal() {
   // }, [])
 
   function closeModal() {
-    setIsOpen(false)
+    setIsOpen(false);
   }
 
   function openModal() {
-    setIsOpen(true)
+    setIsOpen(true);
   }
 
   return (
     <React.Fragment>
-      <div className="fixed flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
-        <button
-          type="button"
-          onClick={openModal}
-          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Crear grupo
-        </button>
-      </div>
+      
 
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -154,13 +140,21 @@ export default function MyModal() {
                     </ul>
                   </div>
 
-                  <div className="mt-4">
+                  <div className="mt-4 ">
                     <button
                       type="button"
-                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      className="inline-flex mr-4 justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                       onClick={closeModal}
                     >
                       Ok
+                    </button>
+
+                    <button
+                      type="button"
+                      className="inline-flex justify-center rounded-md border border-transparent bg-blue-100 px-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                      onClick={() => setOpenSub(true)}
+                    >
+                      Crear Grupo
                     </button>
                   </div>
                 </Dialog.Panel>
@@ -170,5 +164,5 @@ export default function MyModal() {
         </Dialog>
       </Transition>
     </React.Fragment>
-  )
+  );
 }
