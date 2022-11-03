@@ -43,7 +43,7 @@ function App() {
                 {/* <Route path="grupos" exact element={<Grupos />}></Route> */}
                 <Route path="modal" exact element={<GruposModal />}></Route>
           </Route>
-
+          
           <Route path="*" element={<Navigate to ="/" />}/>
         </Routes>
     </Router>

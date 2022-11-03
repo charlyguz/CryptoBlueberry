@@ -40,8 +40,8 @@ export const Cards = (props) => {
                 <div id="modal">
                     <div className="modal-grupos">
                         <p onClick={joinGroupD}> Grupo 1</p>
-                        <p> Grupo 3</p>
                         <p> Grupo 2</p>
+                        <p> Grupo 3</p>
                     </div>
                 </div>
             </div>
