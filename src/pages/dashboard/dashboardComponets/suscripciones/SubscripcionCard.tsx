@@ -1,11 +1,9 @@
 import { ethers } from "ethers";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import GruopModal from "./GruopModal";
 
 import {
-  ServiceProvider,
-  SubscriptionPlan,
-  PlanWithProvider,
+  PlanWithProvider
 } from "../../../../utils/berry-contract";
 
 export default function SubscripcionCard({

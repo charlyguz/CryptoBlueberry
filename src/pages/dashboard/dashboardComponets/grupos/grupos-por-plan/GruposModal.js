@@ -7,35 +7,83 @@ import abi from 'contract/Berry.json'
 
 import GrupoListaItem from './grupo-lista/GrupoListaItem'
 import { UsersIcon } from '@heroicons/react/solid'
+import { BigNumber } from 'ethers'
+
+const groups = [
+  {
+    groupID: BigNumber.from(1),
+    name: 'grupo 1',
+    totalBalance: ethers.utils.parseEther('0.002'),
+    planID: BigNumber.from(1),
+    planProviderID: BigNumber.from(0),
+    numMembers: BigNumber.from(3),
+    initialized: true,
+    creationTimestamp: BigNumber.from(new Date().getTime()),
+    lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
+    
+    plan: {
+      providerID: BigNumber.from(0),
+      name: 'Duolingo+ 3 personas',
+      description: 'Dulingo familar',
+      recurrence: BigNumber.from(30),
+      price: ethers.utils.parseEther('0.003'),
+      active: true,
+      maxMembers: BigNumber.from(3),
+      pricePerMember: ethers.utils.parseEther('0.001'),
+    }
+  },
+  {
+    groupID: BigNumber.from(2),
+    name: 'grupo 2',
+    totalBalance: ethers.utils.parseEther('0.0002'),
+    planID: BigNumber.from(2),
+    planProviderID: BigNumber.from(1),
+    numMembers: BigNumber.from(6),
+    initialized: true,
+    creationTimestamp: BigNumber.from(new Date().getTime()),
+    lastPaymentTimestamp: BigNumber.from(new Date().getTime()),
+
+    plan: {
+      providerID: BigNumber.from(1),
+      name: 'Duolingo+ 6 personas',
+      description: 'Dulingo familar',
+      recurrence: BigNumber.from(30),
+      price: ethers.utils.parseEther('0.005'),
+      active: true,
+      maxMembers: BigNumber.from(6),
+      pricePerMember: ethers.utils.parseEther('0.001'),
+    }
+  }
+]
 
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false)
 
-  let [allGroups, setAllGroups] = useState([])
+  let [allGroups, setAllGroups] = useState(groups)
   let [allProviders, setAllProviders] = useState([])
 
-  useEffect(() => {
-    (async function () {
-      if (window.ethereum) {
-        const provider = new ethers.providers.Web3Provider(window.ethereum);
-        const signer = provider.getSigner();
-        const contract = new ethers.Contract(
-          process.env.REACT_APP_BERRY_CONTRACT_ADDR,
-          abi.abi,
-          signer
-        );
-        try {
-          const result = await getUserGroups(contract, signer);
-          console.log(result);
-          setAllGroups(result)
-        }
-        catch (error) {
-          console.log(error);
-        }
-      }
-    })()
-  }, [])
+  // useEffect(() => {
+  //   (async function () {
+  //     if (window.ethereum) {
+  //       const provider = new ethers.providers.Web3Provider(window.ethereum);
+  //       const signer = provider.getSigner();
+  //       const contract = new ethers.Contract(
+  //         process.env.REACT_APP_BERRY_CONTRACT_ADDR,
+  //         abi.abi,
+  //         signer
+  //       );
+  //       try {
+  //         const result = await getUserGroups(contract, signer);
+  //         console.log(result);
+  //         setAllGroups(result)
+  //       }
+  //       catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
+  //   })()
+  // }, [])
 
   function closeModal() {
     setIsOpen(false)
