@@ -12,6 +12,9 @@ export type ServiceProvider = Awaited<ReturnType<Berry['providers']>>
 export type SubscriptionPlan = Awaited<ReturnType<Berry['plansPerProvider']>>
 export type User = Awaited<ReturnType<Berry['users']>>
 
+export type PlanWithProvider = SubscriptionPlan & {
+  provider: ServiceProvider
+}
 
 // Owner actions
 // create Provider only owner

@@ -15,7 +15,7 @@ import {
 import abi from "../../../../contract/Berry.json";
 import { ethers } from "ethers";
 
-const addres = "0xf25137694E130Fb87735a87C49691054a34cD930";
+const addres = process.env.REACT_APP_BERRY_CONTRACT_ADDR;
 // const Grupos = ({signer}) => {
 const Grupos = () => {
   const [displayN, setDisplay] = useState(0);

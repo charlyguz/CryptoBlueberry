@@ -1,44 +1,13 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React, { Fragment, useState } from 'react'
 import { useEffect } from 'react'
-import { getAllGroups } from '../../../../../utils/berry-contract'
+import { getAllGroups, getUserGroups } from '../../../../../utils/berry-contract'
 import { ethers } from 'ethers'
-import { Berry__factory } from '../../../../../contract/types'
-import BerryJSON from '../../../../../contract/Berry.json'
-import abi from '../../../../../contract/Berry.json'
+import abi from 'contract/Berry.json'
 
 import GrupoListaItem from './grupo-lista/GrupoListaItem'
 import { UsersIcon } from '@heroicons/react/solid'
 
-const positions = [
-  {
-    id: 1,
-    title: 'Back End Developer',
-    type: 'Full-time',
-    location: 'Remote',
-    department: 'Engineering',
-    closeDate: '2020-01-07',
-    closeDateFull: 'January 7, 2020',
-  },
-  {
-    id: 2,
-    title: 'Front End Developer',
-    type: 'Full-time',
-    location: 'Remote',
-    department: 'Engineering',
-    closeDate: '2020-01-07',
-    closeDateFull: 'January 7, 2020',
-  },
-  {
-    id: 3,
-    title: 'User Interface Designer',
-    type: 'Full-time',
-    location: 'Remote',
-    department: 'Design',
-    closeDate: '2020-01-14',
-    closeDateFull: 'January 14, 2020',
-  },
-]
 
 export default function MyModal() {
   let [isOpen, setIsOpen] = useState(false)
@@ -57,7 +26,7 @@ export default function MyModal() {
           signer
         );
         try {
-          const result = await getAllGroups(contract);
+          const result = await getUserGroups(contract, signer);
           console.log(result);
           setAllGroups(result)
         }
@@ -85,6 +54,13 @@ export default function MyModal() {
           className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
         >
           Open dialog
+        </button>
+        <button
+          type="button"
+          onClick={openModal}
+          className="rounded-md bg-black bg-opacity-20 px-4 py-2 text-sm font-medium text-white hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
+        >
+          Crear grupo
         </button>
       </div>
 

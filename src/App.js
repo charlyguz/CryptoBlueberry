@@ -19,6 +19,7 @@ import Balance from "./pages/dashboard/dashboardComponets/balance/Balance"
 import Transacciones from "./pages/dashboard/dashboardComponets/transacciones/Transacciones";
 import Grupos from "./pages/dashboard/dashboardComponets/grupos/Grupos";
 import GruposModal from './pages/dashboard/dashboardComponets/grupos/grupos-por-plan/GruposModal'
+import Proveedores from "./pages/dashboard/dashboardComponets/proveedores/Proveedores";
 
 import "./App.css";
 
@@ -42,6 +43,7 @@ function App() {
                 <Route path="grupos" exact element={<Grupos signer = {signer} setSigner = {setSigner}/>}></Route>
                 {/* <Route path="grupos" exact element={<Grupos />}></Route> */}
                 <Route path="modal" exact element={<GruposModal />}></Route>
+                <Route path="proveedores" exact element={<Proveedores />}></Route>
           </Route>
           
           <Route path="*" element={<Navigate to ="/" />}/>
