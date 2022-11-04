@@ -1,6 +1,6 @@
-import { BaseContract, BigNumberish, ethers, Signer } from "ethers";
-import { Berry, Berry__factory } from "../contract/types";
 import type { Provider } from "@ethersproject/providers";
+import { BigNumberish, Signer } from "ethers";
+import { Berry } from "../contract/types/Berry";
 
 // export const provider = new ethers.providers.JsonRpcProvider(process.env.REACT_APP_TESTNET_URL);
 // export const berry = Berry__factory.connect(process.env.REACT_APP_BERRY_CONTRACT_ADDR!, provider);

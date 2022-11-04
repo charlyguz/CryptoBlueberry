@@ -455,6 +455,7 @@ export interface Berry extends BaseContract {
     ): Promise<
       [
         BigNumber,
+        BigNumber,
         string,
         string,
         BigNumber,
@@ -463,6 +464,7 @@ export interface Berry extends BaseContract {
         number,
         BigNumber
       ] & {
+        planID: BigNumber;
         providerID: BigNumber;
         name: string;
         description: string;
@@ -661,6 +663,7 @@ export interface Berry extends BaseContract {
   ): Promise<
     [
       BigNumber,
+      BigNumber,
       string,
       string,
       BigNumber,
@@ -669,6 +672,7 @@ export interface Berry extends BaseContract {
       number,
       BigNumber
     ] & {
+      planID: BigNumber;
       providerID: BigNumber;
       name: string;
       description: string;
@@ -867,6 +871,7 @@ export interface Berry extends BaseContract {
     ): Promise<
       [
         BigNumber,
+        BigNumber,
         string,
         string,
         BigNumber,
@@ -875,6 +880,7 @@ export interface Berry extends BaseContract {
         number,
         BigNumber
       ] & {
+        planID: BigNumber;
         providerID: BigNumber;
         name: string;
         description: string;
