@@ -1,20 +1,69 @@
 /* This example requires Tailwind CSS v2.0+ */
-import React, { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { ExclamationIcon, XIcon } from "@heroicons/react/outline";
-import { BigNumber, BigNumberish } from "ethers";
+import { XIcon } from "@heroicons/react/outline";
+import abi from "contract/Berry.json";
+import { ethers } from "ethers";
+import React, { ChangeEvent, Fragment, useState } from "react";
+import { Berry } from "../../../../contract/types";
+import { createGroup, PlanWithProvider } from "../../../../utils/berry-contract";
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
 export default function GruopModal({
-  planId,
-  providerId,
+  plan,
   open,
   setOpen,
 }: {
-  planId: BigNumberish;
-  providerId: BigNumberish;
+  plan: PlanWithProvider,
   open: boolean;
   setOpen: (open: boolean) => void;
 }) {
+  const [isCreatingGroup, setIsCreatingGroup] = useState(false)
+  const [groupName, setGroupName] = useState('')
+
+  const handleInput = (event: ChangeEvent<HTMLInputElement>) => {
+    setGroupName(event.currentTarget.value)
+  }
+
+  const mockCreate = async () => {
+    setIsCreatingGroup(true)
+
+    await sleep(1_000)
+
+    setIsCreatingGroup(false)
+  }
+
+  const createNewGroup = async () => {
+    if (window.ethereum) {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(
+        process.env.REACT_APP_BERRY_CONTRACT_ADDR!,
+        (abi as any).abi,
+        signer
+      );
+      try {
+        // Show spinner
+        setIsCreatingGroup(true)
+        
+        const createGroupTx = await createGroup(contract as Berry, plan.providerID, plan.planID, groupName, {
+          value: plan.pricePerMember
+        })
+
+        await createGroupTx.wait()
+
+        setIsCreatingGroup(false)
+        setOpen(false)
+      }
+      catch (error) {
+        console.log(error);
+        setIsCreatingGroup(false)
+      }
+    } else {
+      alert('Conecta a una cartera')
+    }
+  }
+
   return (
     <Transition.Root show={open} as={Fragment}>
       <Dialog
@@ -68,34 +117,40 @@ export default function GruopModal({
                     htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
-                    Nombre del grupo
+                    {plan.name} nuevo grupo
                   </label>
-                  <div className="mt-1 w-100">
+                  <div className="mt-5 w-100">
                     <input
                       type="email"
                       name="email"
                       id="email"
                       className="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md p-1"
                       placeholder="Nombre del grupo"
+                      onChange={handleInput}
                     />
                   </div>
+                  <p className="mt-2 text-xs text-gray-500">
+                    Precio por miembro: ${ethers.utils.formatEther(plan.pricePerMember)} ETH
+                  </p>
                 </div>
               </div>
               <div className="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
                 <button
                   type="button"
-                  className="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
-                  // onClick={() => setOpen(false)}
+                  className="w-full min-w-[8rem] inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm"
+                  onClick={createNewGroup}
                 >
-                  Crear Grupo
+                  {isCreatingGroup
+                    ? <svg className="h-5 animate-spin text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+
+                    : <span>
+                      Crear Grupo
+                    </span>
+                  }
                 </button>
-                {/* <button
-                  type="button"
-                  className="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
-                  onClick={() => setOpen(false)}
-                >
-                  Cancel
-                </button> */}
               </div>
             </div>
           </Transition.Child>

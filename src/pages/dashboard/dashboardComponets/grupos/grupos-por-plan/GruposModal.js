@@ -3,15 +3,12 @@ import abi from "contract/Berry.json";
 import { ethers } from "ethers";
 import React, { Fragment, useEffect, useState } from "react";
 import {
-  getAllGroups,
-  getPlan
+  getAllGroups, getPlan
 } from "../../../../../utils/berry-contract";
 
 import GrupoListaItem from "./grupo-lista/GrupoListaItem";
 
-export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
-  let [allGroups, setAllGroups] = useState([]);
-  let [allProviders, setAllProviders] = useState([]);
+export default function MyModal({ isOpen, setIsOpen, setOpenSub, plan }) {
   let [allGroupsWithProvider, setAllGroupsWithProvider] = useState([])
 
   useEffect(() => {
@@ -25,15 +22,16 @@ export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
           signer
         );
         try {
-          const result = await getAllGroups(contract, signer);
-          console.log(result);
+          const allGroups = await getAllGroups(contract, signer);
+          const groupsForThisPlan = allGroups.filter((group) => group.planID.toNumber() === plan.planID.toNumber() && group.planProviderID.toNumber() === plan.providerID.toNumber())
 
-          const groupsWithProvider = await Promise.all(result.map(async (group) => {
+          const groupsWithProvider = await Promise.all(groupsForThisPlan.map(async (group) => {
             return {
               ...group,
               plan: await getPlan(contract, group.planProviderID, group.planID)
             }
           }))
+
           setAllGroupsWithProvider(groupsWithProvider)
         }
         catch (error) {
@@ -41,7 +39,7 @@ export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
         }
       }
     })()
-  }, [])
+  }, [plan])
 
   function closeModal() {
     setIsOpen(false);
@@ -53,8 +51,6 @@ export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
 
   return (
     <React.Fragment>
-
-
       <Transition appear show={isOpen} as={Fragment}>
         <Dialog as="div" className="relative z-10" onClose={closeModal}>
           <Transition.Child
@@ -69,7 +65,7 @@ export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
             <div className="fixed inset-0 bg-black bg-opacity-25" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div className="fixed inset-0 overflow-y-scroll">
             <div className="flex min-h-full items-center justify-center p-4 text-center">
               <Transition.Child
                 as={Fragment}
@@ -80,14 +76,20 @@ export default function MyModal({ isOpen, setIsOpen, setOpenSub }) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-[70%] transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="w-full max-w-[70%] transform overflow-y-scroll rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                   <Dialog.Title
                     as="h3"
                     className="text-lg font-medium leading-6 text-gray-900"
                   >
-                    Grupos en (nombre de grupo)
+                    Grupos en {plan.name}
                   </Dialog.Title>
-                  <div className="bg-white overflow-hidden sm:rounded-md">
+                  <div className="bg-white overflow-y-scroll sm:rounded-md max-h-[70vh]">
+                    {
+                      allGroupsWithProvider.length < 1 &&
+                      <p>
+                        No hay grupos
+                      </p>
+                    }
                     <ul className="divide-y">
                       {allGroupsWithProvider.map((currentGroup, idx) => (
                         <li key={idx}>

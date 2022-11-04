@@ -19,13 +19,13 @@ export default function SubscripcionCard({
 
   return (
     <React.Fragment>
-      <GruposModal isOpen={open} setIsOpen={setOpen} setOpenSub={setOpenSub}></GruposModal>
-      <GruopModal planId={1} providerId={1} open={openSub} setOpen={setOpenSub}></GruopModal>
+      <GruposModal isOpen={open} setIsOpen={setOpen} setOpenSub={setOpenSub} plan={planWithProvider}></GruposModal>
+      <GruopModal plan={planWithProvider} open={openSub} setOpen={setOpenSub}></GruopModal>
       <li
         key={index}
         className="py-10 px-6 bg-slate-500 text-center rounded-lg"
       >
-        <div className="space-y-6 ">
+        <div className="space-y-6 flex flex-col justify-between max-h-full h-full">
           <img
             className="mx-auto h-40 w-40 rounded-full"
             src={planWithProvider.provider.imageURL}
@@ -67,16 +67,27 @@ export default function SubscripcionCard({
               </div>
             </dl>
 
-            <ul className="flex justify-around space-x-5 space-y-5">
+            <br />
+
+            {/* <ul className="inline-flex justify-center space-x-5 space-y-5">
               <li>
                 <span
                   className="px-4 py-2 rounded-full bg-green-400 text-gray-100 font-bold"
                   onClick={() => setOpen(true)}
                 >
-                  ${ethers.utils.formatEther(planWithProvider.price)} ETH
+                  Ver grupos disponibles
                 </span>
               </li>
-            </ul>
+            </ul> */}
+          </div>
+          <div>
+            <button 
+            type="button" 
+            className="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            onClick={() => setOpen(true)}
+            >
+              Ver grupos disponibles
+            </button>
           </div>
         </div>
       </li>
