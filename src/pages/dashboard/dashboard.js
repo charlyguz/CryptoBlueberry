@@ -194,7 +194,7 @@ const Dashboard = (account, setAccount) => {
                 Transacciones
               </NavLink>
 
-              <NavLink
+              {/* <NavLink
                 className="dash-link"
                 to="/dashboard/grupos"
                 style={({ isActive }) => ({
@@ -202,7 +202,7 @@ const Dashboard = (account, setAccount) => {
                 })}
               >
                 Grupos
-              </NavLink>
+              </NavLink> */}
 
               <NavLink
                 className="dash-link"
@@ -214,7 +214,7 @@ const Dashboard = (account, setAccount) => {
                 Suscripciones
               </NavLink>
 
-              <NavLink
+              {/* <NavLink
                 className="dash-link"
                 to="/dashboard/modal"
                 style={({ isActive }) => ({
@@ -232,7 +232,7 @@ const Dashboard = (account, setAccount) => {
                 })}
               >
                 Proveedores
-              </NavLink>
+              </NavLink> */}
             </div>
 
             <div className="config_dash">
