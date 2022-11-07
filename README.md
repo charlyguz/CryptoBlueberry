@@ -6,6 +6,14 @@
 
 CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos publicos para subscipciones más baratas y grupos privado para cosas generales. Así como realizar transferencias en un moneda estable. Al hacerlo tendras recompensas y beneficios para adentrarte en el futuro.
 
+Este es el link a nuestra dapp!
+
+[Click Here](https://cryptoblueberry.netlify.app/)
+
+Revisa nuestro repositorio de backend, donde encontraras nuestros Scripts, test y contract.
+
+[aqui.](https://github.com/unscatty/crypto-blueberry-back)
+
 # Contenido
 
 - [Video](#Video)
@@ -19,7 +27,7 @@ CryptoBlueberry es una dapp con superpoderes. En esta podras tener grupos public
 
 # Video
 
-[![Alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/imagen-hero.png?raw=true)](https://youtu.be/nBUdj1dnGYQ)
+[![Alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/imagen-hero.png?raw=true)](https://youtu.be/Z76h-cTdH9E)
 
 
 # Servicios
@@ -64,7 +72,11 @@ El contrato de cryptoBlueberry toma como referencia los pagos automaticos del fr
 - Puede crear planes.
 - Puede crear grupos
 - Puede unirse a grupos.
-- TODO EL CONTRATO FUE TESTEADO, EL ARCHIVO TEST SE PUDE ENCONTRAR EN LAS CARPETAS.
+- TODO EL CONTRATO FUE TESTEADO.
+
+Revisa nuestro repositorio de backend, donde encontraras nuestros Scripts, test y contract.
+
+[aqui.](https://github.com/unscatty/crypto-blueberry-back)
 
 TODAS LAS FUNCIONES SON EFECTIVAS Y ESTAN EN CODIGO EN LA DAPP DE IGUAL FORMA 
 
