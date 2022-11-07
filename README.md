@@ -62,7 +62,7 @@ Revisa nuestro repositorio de backend, donde encontraras nuestros Scripts, test 
 
 - Ve nuestro contrato en RSK explorer
 
-#### [Contrato de CryptoBluberry](https://explorer.testnet.rsk.co/address/0xf25137694e130fb87735a87c49691054a34cd930?__ctab=Code)
+#### [Contrato de CryptoBluberry](https://explorer.testnet.rsk.co/address/0xE91d936a5076726964C19E77B2793Cd5A3aDaD0d?__ctab=Code)
 
 ![alt text](https://github.com/charlyguz/CryptoBlueberry/blob/main/src/assets/img/contrato.png?raw=true)
 
