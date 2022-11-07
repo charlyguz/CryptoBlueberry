@@ -194,7 +194,7 @@ const Dashboard = (account, setAccount) => {
                 Transacciones
               </NavLink>
 
-              {/* <NavLink
+              <NavLink
                 className="dash-link"
                 to="/dashboard/grupos"
                 style={({ isActive }) => ({
@@ -202,7 +202,7 @@ const Dashboard = (account, setAccount) => {
                 })}
               >
                 Grupos
-              </NavLink> */}
+              </NavLink>
 
               <NavLink
                 className="dash-link"

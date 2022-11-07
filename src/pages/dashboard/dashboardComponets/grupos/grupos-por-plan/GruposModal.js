@@ -5,8 +5,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import {
   getAllGroups, getPlan
 } from "../../../../../utils/berry-contract";
-
-import GrupoListaItem from "./grupo-lista/GrupoListaItem";
+import GrupoListaItem from "pages/dashboard/dashboardComponets/grupos/grupos-por-plan/grupo-lista/GrupoListaItem";
 
 export default function MyModal({ isOpen, setIsOpen, setOpenSub, plan }) {
   let [allGroupsWithProvider, setAllGroupsWithProvider] = useState([])
@@ -93,7 +92,7 @@ export default function MyModal({ isOpen, setIsOpen, setOpenSub, plan }) {
                     <ul className="divide-y">
                       {allGroupsWithProvider.map((currentGroup, idx) => (
                         <li key={idx}>
-                          <GrupoListaItem group={currentGroup} />
+                          <GrupoListaItem group={currentGroup} isOwn={false} />
                         </li>
                       ))}
                     </ul>

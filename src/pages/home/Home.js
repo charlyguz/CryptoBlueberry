@@ -52,11 +52,11 @@ const Home = ({ account, setAccount }) => {
             </a>
 
             {/* <Link to="/dashboard/inicio" className="primary-button">
-              Conceta ahora
+              Conecta ahora
             </Link> */}
 
             <Link className="primary-button" onClick={initConnection}>
-              Conceta ahora
+              Conecta ahora
             </Link>
           </div>
         </nav>
@@ -81,7 +81,7 @@ const Home = ({ account, setAccount }) => {
                   Empieza ahora
                 </a> */}
                 <Link className="primary-button" onClick={initConnection}>
-                  Conceta ahora
+                  Conecta ahora
                 </Link>
                 <a href="#" className="section__hero--left-button-secundary">
                   ¿Cómo funciona?
