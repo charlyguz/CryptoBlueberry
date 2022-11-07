@@ -15,6 +15,7 @@
   padding: 20px;
   display: flex;
   flex-wrap: wrap;
+  overflow: auto;
 }
 
 .section__grupos-item-container {
